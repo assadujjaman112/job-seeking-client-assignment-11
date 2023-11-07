@@ -8,10 +8,20 @@ const NavBar = () => {
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "bg-[#331D2C] text-white" : ""
+            isPending ? "pending" : isActive ? "bg-[#331D2C] text-white mr-1" : ""
           }
         >
           Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/allJobs"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "bg-[#331D2C] text-white mr-1 " : ""
+          }
+        >
+          All Jobs
         </NavLink>
       </li>
     </>
