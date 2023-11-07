@@ -1,4 +1,5 @@
 import logo from "../../../assets/images/logo.png";
+import { HiOutlinePhone, HiOutlineMail, HiOutlineLocationMarker } from "react-icons/hi";
 const Footer = () => {
   return (
     <footer className=" p-10 bg-base-200 text-base-content">
@@ -20,9 +21,9 @@ const Footer = () => {
         </div>
         <div>
           <h1 className="footer-title">Contact</h1>
-          <p>Email : iapplynow@gmail.com</p>
-          <p>Phone : 01344669990</p>
-          <p>Address : Dhanmondi, Dhaka 1215</p>
+          <p className="flex items-center gap-2"><HiOutlineMail  className="text-xl"></HiOutlineMail> Email : iapplynow@gmail.com</p>
+          <p className="flex items-center gap-2"><HiOutlinePhone className="text-xl"></HiOutlinePhone> Phone : 01344669990</p>
+          <p className="flex items-center gap-2"><HiOutlineLocationMarker className="text-xl"></HiOutlineLocationMarker> Address : Dhanmondi, Dhaka 1215</p>
         </div>
         <nav>
           <h1 className="footer-title">Social</h1>
