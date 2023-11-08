@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
     const {createUser} = useContext(AuthContext);
+    const[signUpErr, setSignUpErr] = useState("");
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -12,6 +13,17 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, email, password, photoUrl, location);
+    
+    setSignUpErr("");
+
+    if(password.length < 6){
+        setSignUpErr("Password must have at least 6 character");
+        return;
+    }
+    else if(!/[A-Z]/.test(password)){
+        setSignUpErr("Password must have at least one uppercase character");
+        return;
+    }
 
 
     createUser(email,password)
@@ -82,6 +94,9 @@ const SignUp = () => {
               </a>
             </label>
           </div>
+          {
+            signUpErr&& <p className="text-red-600 font-bold">{signUpErr}</p>
+          }
 
           <div className="form-control mt-6">
             <input

@@ -1,15 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
   const {signIn} = useContext(AuthContext);
+  const[loginErr,setLoginErr] = useState("");
 
   const handleLogin = event => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    setLoginErr("");
 
     signIn(email, password)
     .then(result => {
@@ -17,6 +19,7 @@ const Login = () => {
     })
     .catch(error => {
       console.error(error);
+      setLoginErr(error.message);
     })
   }
 
@@ -55,6 +58,9 @@ const Login = () => {
               </a>
             </label>
           </div>
+          {
+            loginErr && <p className="text-red-600 font-bold">{loginErr}</p>
+          }
           <div className="form-control mt-6">
             <input
               className="btn bg-[#331D2C] text-white hover:text-black"
