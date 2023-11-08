@@ -1,15 +1,21 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
-
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const navLinks = (
     <>
       <li>
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "bg-[#331D2C] text-white mr-1" : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "bg-[#331D2C] text-white mr-1"
+              : ""
           }
         >
           Home
@@ -19,14 +25,26 @@ const NavBar = () => {
         <NavLink
           to="/allJobs"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "bg-[#331D2C] text-white mr-1 " : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "bg-[#331D2C] text-white mr-1 "
+              : ""
           }
         >
           All Jobs
         </NavLink>
       </li>
     </>
+
+  
   );
+
+  const handleLogOut = () => {
+    logOut()
+    .then()
+    .catch()
+  }
   return (
     <div className="navbar bg-base-100 md:w-4/5 mx-auto">
       <div className="navbar-start">
@@ -65,7 +83,20 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn bg-[#331D2C] text-white hover:text-black">Login </Link >
+        {user ? (
+          <Link>
+            <button onClick={handleLogOut} className="btn bg-[#331D2C] text-white hover:text-black">
+              Log out
+            </button>
+          </Link>
+        ) : (
+          <Link
+            to="/login"
+            className="btn bg-[#331D2C] text-white hover:text-black"
+          >
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
