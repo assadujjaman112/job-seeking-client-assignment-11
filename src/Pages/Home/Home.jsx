@@ -54,13 +54,13 @@ const Home = () => {
               Find Your Dream Job
             </h1>
             <p className="mb-5 ">
-              Your Path to Professional Success Begins Here! Welcome to [Your
-              Website Name], where career dreams become reality. Explore a world
-              of job opportunities, from entry-level positions to executive
-              roles. Our platform connects you with top companies and helps you
-              secure your ideal job. Start your journey to a brighter future now
-              and turn your ambitions into achievements. Join us today and lets
-              make your career aspirations a reality!
+              Your Path to Professional Success Begins Here! Welcome to
+              iApplyNow, where career dreams become reality. Explore a world of
+              job opportunities, from entry-level positions to executive roles.
+              Our platform connects you with top companies and helps you secure
+              your ideal job. Start your journey to a brighter future now and
+              turn your ambitions into achievements. Join us today and lets make
+              your career aspirations a reality!
             </p>
             <div>
               <input
