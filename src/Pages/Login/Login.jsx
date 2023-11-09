@@ -1,10 +1,13 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-  const {signIn} = useContext(AuthContext);
+  const {signIn , googleSignIn} = useContext(AuthContext);
   const[loginErr,setLoginErr] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = event => {
     event.preventDefault();
@@ -16,6 +19,18 @@ const Login = () => {
     signIn(email, password)
     .then(result => {
       console.log(result.user);
+      navigate(location?.state? location?.state : "/");
+    })
+    .catch(error => {
+      console.error(error);
+      setLoginErr(error.message);
+    })
+  }
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+    .then(result => {
+      console.log(result.user);
+      navigate(location?.state? location?.state : "/");
     })
     .catch(error => {
       console.error(error);
@@ -67,6 +82,9 @@ const Login = () => {
               type="submit"
               value="Login"
             />
+          </div>
+          <div onClick={handleGoogleSignIn} className="flex justify-center my-5">
+          <button className="btn bg-white hover:bg-white"><FcGoogle className="text-4xl"></FcGoogle></button>
           </div>
         </form>
         <p className="text-center mb-5">

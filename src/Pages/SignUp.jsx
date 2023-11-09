@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
     const {createUser} = useContext(AuthContext);
     const[signUpErr, setSignUpErr] = useState("");
+    const location = useLocation();
+    const navigate = useNavigate();
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -13,7 +15,7 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, email, password, photoUrl, location);
-    
+
     setSignUpErr("");
 
     if(password.length < 6){
@@ -28,7 +30,9 @@ const SignUp = () => {
 
     createUser(email,password)
     .then(result => {
-        console.log(result.user);
+        console.log(result.user.photoURL);
+        navigate(location?.state? location?.state : "/");
+
     })
     .catch(error => {
         console.error(error)
