@@ -23,6 +23,20 @@ const NavBar = () => {
       </li>
       <li>
         <NavLink
+          to="/blog"
+          className={({ isActive, isPending }) =>
+            isPending
+              ? "pending"
+              : isActive
+              ? "bg-[#331D2C] text-white mr-1"
+              : ""
+          }
+        >
+          Blogs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/allJobs"
           className={({ isActive, isPending }) =>
             isPending

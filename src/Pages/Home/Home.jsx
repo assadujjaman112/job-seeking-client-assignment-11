@@ -1,7 +1,43 @@
+import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import JobDetails from "../../components/jobDetails";
+import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
+  const allJobs = useLoaderData();
+  const [jobs, setJobs] = useState(allJobs);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/jobs")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setJobs(data);
+  //     });
+  // }, []);
+
+  const handleAllJobs = () => {
+    setJobs(allJobs);
+  };
+
+  const handleOnSite = () => {
+    const onSiteJobs = allJobs?.filter((job) => job.category === "On Site");
+    setJobs(onSiteJobs);
+  };
+  const handleRemoteJobs = () => {
+    const remoteJobs = allJobs?.filter((job) => job.category === "Remote");
+    setJobs(remoteJobs);
+  };
+
+  const handleHybridJobs = () => {
+    const hybridJobs = allJobs?.filter((job) => job.category === "Hybrid");
+    setJobs(hybridJobs);
+  };
+  const handlePartTimeJobs = () => {
+    const partTimeJobs = allJobs?.filter((job) => job.category === "Part Time");
+    setJobs(partTimeJobs);
+  };
+
   return (
     <div>
       <div
@@ -39,26 +75,60 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="w-11/12 md:w-4/5 mx-auto my-5 md:my-10 lg:my-16">
         <Tabs>
           <TabList>
-            <Tab>On Site Job</Tab>
-            <Tab>Remote Job</Tab>
-            <Tab>Hybrid</Tab>
-            <Tab>Part Time</Tab>
+            <Tab>
+              <button onClick={handleAllJobs}>All Job</button>
+            </Tab>
+            <Tab>
+              <button onClick={handleOnSite}>On Site Job</button>
+            </Tab>
+            <Tab>
+              <button onClick={handleRemoteJobs}>Remote Job</button>
+            </Tab>
+            <Tab>
+              <button onClick={handleHybridJobs}>Hybrid</button>
+            </Tab>
+            <Tab>
+              <button onClick={handlePartTimeJobs}>Part Time</button>
+            </Tab>
           </TabList>
 
           <TabPanel>
-            <h2>Any content 1</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+              {jobs?.map((job) => (
+                <JobDetails key={job._id} job={job}></JobDetails>
+              ))}
+            </div>
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+              {jobs?.map((job) => (
+                <JobDetails key={job._id} job={job}></JobDetails>
+              ))}
+            </div>
           </TabPanel>
           <TabPanel>
-            <h2>Any content 1</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+              {jobs?.map((job) => (
+                <JobDetails key={job._id} job={job}></JobDetails>
+              ))}
+            </div>
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+              {jobs?.map((job) => (
+                <JobDetails key={job._id} job={job}></JobDetails>
+              ))}
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+              {jobs?.map((job) => (
+                <JobDetails key={job._id} job={job}></JobDetails>
+              ))}
+            </div>
           </TabPanel>
         </Tabs>
       </div>
