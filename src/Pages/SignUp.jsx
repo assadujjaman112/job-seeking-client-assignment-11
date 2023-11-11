@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
     const {createUser} = useContext(AuthContext);
@@ -30,8 +31,15 @@ const SignUp = () => {
 
     createUser(email,password)
     .then(result => {
-        console.log(result.user.photoURL);
-        navigate(location?.state? location?.state : "/");
+        updateProfile(result.user,{
+          displayName : name,
+          photoURL : photoUrl
+        })
+        .then(()=> {
+
+          navigate(location?.state? location?.state : "/");
+        })
+        .catch()
 
     })
     .catch(error => {

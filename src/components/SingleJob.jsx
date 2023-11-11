@@ -6,7 +6,7 @@ const SingleJob = () => {
     console.log(job)
     return (
         <div>
-            
+            <h1>this is single job page</h1>
         </div>
     );
 };

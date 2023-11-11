@@ -50,15 +50,11 @@ const NavBar = () => {
         </NavLink>
       </li>
     </>
-
-  
   );
 
   const handleLogOut = () => {
-    logOut()
-    .then()
-    .catch()
-  }
+    logOut().then().catch();
+  };
   return (
     <div className="navbar bg-base-100 md:w-4/5 mx-auto">
       <div className="navbar-start">
@@ -98,11 +94,17 @@ const NavBar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <Link>
-            <button onClick={handleLogOut} className="btn bg-[#331D2C] text-white hover:text-black">
+          <div className="flex gap-5">
+            <img className="w-12 h-12 rounded-full" src={user.photoURL} alt="" />
+            <Link>
+            <button
+              onClick={handleLogOut}
+              className="btn bg-[#331D2C] text-white hover:text-black"
+            >
               Log out
             </button>
           </Link>
+          </div>
         ) : (
           <Link
             to="/login"
