@@ -1,14 +1,29 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from "../providers/AuthProvider";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const AddAJob = () => {
+const UpdateJob = () => {
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState(new Date());
+  const job = useLoaderData();
+  console.log("job", job)
+  const {
+    _id,
+    poster,
+    title,
+    date,
+    deadline,
+    salary,
+    category,
+    description,
+    photo,
+    logo
+  } = job;
 
-  const handleAddJob = (event) => {
+  const handleUpdateJob = (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -25,11 +40,10 @@ const AddAJob = () => {
     const photo = form.photo.value;
     const logo = form.logo.value;
 
-
-    const newJob = {
+    const updatedJob = {
+      title,
       poster,
       email,
-      title,
       category,
       salary,
       description,
@@ -39,21 +53,22 @@ const AddAJob = () => {
       photo,
       logo
     };
-    console.log(newJob);
+    console.log(updatedJob);
 
-    fetch("http://localhost:5000/jobs", {
-      method: "POST",
+    fetch(`http://localhost:5000/jobs/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newJob),
+      body: JSON.stringify(updatedJob),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.insertedId) {
+        console.log(data)
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Good job!",
-            text: "Successfully added a job!!!",
+            text: "Successfully updated a job!!!",
             icon: "success",
           });
         }
@@ -62,8 +77,10 @@ const AddAJob = () => {
   return (
     <div className="hero min-h-screen bg-base-200 mb-10 py-5 md:py-10 lg:py-16">
       <div className="card flex-shrink-0 w-11/12 lg:w-3/5  mx-auto my-10 md:my-16 lg:my-0 shadow-2xl bg-base-100">
-        <h1 className="text-center text-3xl font-bold mt-5">Add A Product</h1>
-        <form onSubmit={handleAddJob} className="card-body">
+        <h1 className="text-center text-3xl font-bold mt-5">
+          Update A Job
+        </h1>
+        <form onSubmit={handleUpdateJob} className="card-body">
           {/* Row - 1 */}
           <div className="flex gap-5">
             <div className="w-1/2">
@@ -73,6 +90,7 @@ const AddAJob = () => {
               <input
                 type="text"
                 name="title"
+                defaultValue={title}
                 placeholder="Job Title"
                 className="input input-bordered w-full text-xs"
                 required
@@ -85,7 +103,7 @@ const AddAJob = () => {
               <input
                 type="text"
                 name="name"
-                defaultValue={user.displayName}
+                defaultValue={poster}
                 placeholder="User Name"
                 className="input input-bordered w-full text-xs"
                 required
@@ -101,6 +119,7 @@ const AddAJob = () => {
               <input
                 type="text"
                 name="category"
+                defaultValue={category}
                 placeholder="Job Category"
                 className="input input-bordered w-full text-xs"
                 required
@@ -113,6 +132,7 @@ const AddAJob = () => {
               <input
                 type="text"
                 name="salary"
+                defaultValue={salary}
                 placeholder="Salary Range"
                 className="input input-bordered w-full text-xs"
                 required
@@ -128,6 +148,7 @@ const AddAJob = () => {
               <input
                 type="text"
                 name="description"
+                defaultValue={description}
                 placeholder="Description"
                 className="input input-bordered w-full text-xs"
                 required
@@ -141,6 +162,7 @@ const AddAJob = () => {
                 type="date"
                 name="date"
                 placeholder="Job Posting Date"
+                defaultValue={date}
                 className="input input-bordered w-full text-xs"
                 required
               />
@@ -154,6 +176,7 @@ const AddAJob = () => {
               </label>
               <DatePicker
                 selected={startDate}
+                defaultValue={deadline}
                 onChange={(date) => setStartDate(date)}
               />
             </div>
@@ -180,6 +203,7 @@ const AddAJob = () => {
               <input
                 type="text"
                 name="photo"
+                defaultValue={photo}
                 placeholder="Photo URL"
                 className="input input-bordered w-full text-xs"
                 required
@@ -187,12 +211,13 @@ const AddAJob = () => {
             </div>
             <div className="w-1/2">
               <label className="label">
-                <span className="label-text">Company Logo</span>
+                <span className="label-text">Company logo</span>
               </label>
               <input
                 type="text"
                 name="logo"
-                placeholder="Company Logo"
+                defaultValue={logo}
+                placeholder="Company logo"
                 className="input input-bordered w-full text-xs"
                 required
               />
@@ -202,7 +227,7 @@ const AddAJob = () => {
             <input
               className="btn bg-[#331D2C] text-white hover:text-black btn-block my-8"
               type="submit"
-              value="Add  A Job"
+              value="Update  A Job"
             />
           </div>
         </form>
@@ -211,4 +236,4 @@ const AddAJob = () => {
   );
 };
 
-export default AddAJob;
+export default UpdateJob;

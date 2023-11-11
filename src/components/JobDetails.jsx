@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const JobDetails = ({ job }) => {
-  const {_id, poster, title, date, deadline, salary, number, category } = job;
+  const {_id, poster, title, date, deadline, salary, number, category} = job;
   return (
     <div className="card card-compact  bg-slate-100 shadow-xl p-8">
       <div className="card-body">

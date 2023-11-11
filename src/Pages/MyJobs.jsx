@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -64,7 +64,7 @@ const MyJobs = () => {
                 <td>{job.title}</td>
                 <td>{job.category}</td>
                 <td>
-                  <button className="mr-5 btn mb-5 bg-[#331D2C] text-white hover:text-black">Update</button>
+                  <Link to={`/updateJob/${job._id}`}><button className="mr-5 btn mb-5 bg-[#331D2C] text-white hover:text-black">Update</button></Link>
                   <button onClick={()=>handleDelete(job._id)} className="btn bg-[#331D2C] text-white hover:text-black">Delete</button>
                 </td>
               </tr>
