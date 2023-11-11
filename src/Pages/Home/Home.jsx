@@ -64,11 +64,11 @@ const Home = () => {
             </p>
             <div>
               <input
-                className="px-6 py-2 rounded-l-lg outline-none"
+                className="pr-10 pl-7 py-3 rounded-l-lg text-black outline-none input-bordered"
                 placeholder="Search here..."
                 type="text"
               />
-              <button className="rounded-r-lg bg-[#331D2C] py-2 px-4 text-white font-bold ">
+              <button className="rounded-r-lg bg-[#331D2C] py-3 px-4 text-white font-bold ">
                 Search
               </button>
             </div>

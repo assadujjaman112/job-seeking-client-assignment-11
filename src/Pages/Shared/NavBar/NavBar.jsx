@@ -49,6 +49,22 @@ const NavBar = () => {
           All Jobs
         </NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink
+            to="/addAJob"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "bg-[#331D2C] text-white mr-1 "
+                : ""
+            }
+          >
+            Add A Job
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -95,15 +111,19 @@ const NavBar = () => {
       <div className="navbar-end">
         {user ? (
           <div className="flex gap-5">
-            <img className="w-12 h-12 rounded-full" src={user.photoURL} alt="" />
+            <img
+              className="w-12 h-12 rounded-full"
+              src={user.photoURL}
+              alt=""
+            />
             <Link>
-            <button
-              onClick={handleLogOut}
-              className="btn bg-[#331D2C] text-white hover:text-black"
-            >
-              Log out
-            </button>
-          </Link>
+              <button
+                onClick={handleLogOut}
+                className="btn bg-[#331D2C] text-white hover:text-black"
+              >
+                Log out
+              </button>
+            </Link>
           </div>
         ) : (
           <Link
