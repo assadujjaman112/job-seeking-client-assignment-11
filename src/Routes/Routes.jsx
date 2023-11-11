@@ -8,6 +8,7 @@ import SingleJob from "../components/SingleJob";
 import Blog from "../Pages/blog/Blog";
 import PrivateRoute from "./PrivateRoute";
 import AddAJob from "../components/AddAJob";
+import MyJobs from "../Pages/MyJobs";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,15 @@ const router = createBrowserRouter([
             <AddAJob></AddAJob>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/myJobs",
+        element: (
+          <PrivateRoute>
+            <MyJobs></MyJobs>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("http://localhost:5000/jobs"),
       },
       {
         path: "/signUp",
