@@ -1,11 +1,48 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyJobs = () => {
   const allJobs = useLoaderData();
   const { user } = useContext(AuthContext);
-  const myJobs = allJobs.filter((job) => job.email === user.email);
+  const filteredJobs = allJobs.filter((job) => job.email === user.email);
+  const [myJobs, setMyjJobs] = useState(filteredJobs);
+
+  const handleDelete = id => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/job/${id}`,{
+          method : "DELETE"
+        })
+        .then(res => res.json())
+        .then(data => {
+          if(data.deletedCount > 0){
+            const remaining = myJobs?.filter(job => job._id !== id);
+            setMyjJobs(remaining) 
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+
+          }
+        })
+        
+      }
+    });
+  }
+
+
+
   return (
     <div>
       <div className="overflow-x-auto py-5 md:py-10 lg:py-16 bg-base-200  mb-5 md:mb-10 lg:mb-16">
@@ -28,7 +65,7 @@ const MyJobs = () => {
                 <td>{job.category}</td>
                 <td>
                   <button className="mr-5 btn mb-5 bg-[#331D2C] text-white hover:text-black">Update</button>
-                  <button className="btn bg-[#331D2C] text-white hover:text-black">Delete</button>
+                  <button onClick={()=>handleDelete(job._id)} className="btn bg-[#331D2C] text-white hover:text-black">Delete</button>
                 </td>
               </tr>
             ))}
