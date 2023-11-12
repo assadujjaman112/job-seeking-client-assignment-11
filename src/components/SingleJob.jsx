@@ -166,7 +166,7 @@ const SingleJob = () => {
                 <div className="modal-action flex justify-center">
                   <input
                     type="submit"
-                    value="submit"
+                    value="Submit Application"
                     className="btn w-1/3 bg-[#331D2C] text-white hover:text-black mb-5"
                   />
                   <form method="dialog" className="w-1/3">

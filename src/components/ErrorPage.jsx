@@ -8,7 +8,7 @@ const ErrorPage = () => {
         <img src={gif} alt="" />
       </div>
       <div className="flex justify-center">
-        <Link to="/" className="btn bg-[#331D2C] text-white hover:text-black ">Go Home</Link>
+        <Link to="/" className="btn bg-[#331D2C] text-white hover:text-black ">Back to Home</Link>
       </div>
     </div>
   );
