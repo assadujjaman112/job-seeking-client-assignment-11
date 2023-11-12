@@ -81,6 +81,22 @@ const NavBar = () => {
           </NavLink>
         </li>
       )}
+      {user && (
+        <li>
+          <NavLink
+            to="/appliedJobs"
+            className={({ isActive, isPending }) =>
+              isPending
+                ? "pending"
+                : isActive
+                ? "bg-[#331D2C] text-white mr-1 "
+                : ""
+            }
+          >
+            Applied Jobs
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
