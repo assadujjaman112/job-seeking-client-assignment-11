@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "img": "https://i.ibb.co/RbWTR3K/young-woman-smiling-happily-looking-sideways-wondering-thinking-having-idea-black-wall-1194-41751.jpg",
+    "name": "Jessica Turner",
+    "role": "Software Engineer",
+    "description": "As a Software Engineer, iApplyNow made my job search incredibly easy. The user-friendly interface and extensive tech job listings helped me find the perfect position in no time. I'm grateful for iApplyNow's efficiency and the seamless application process tailored to the tech industry."
+  },
+  {
+    "id": 2,
+    "img": "https://i.ibb.co/g6CLD0Y/serious-young-man-standing-outdoors-with-his-arms-crossed-1262-19037.jpg",
+    "name": "Michael Rodriguez",
+    "role": "IT Specialist",
+    "description": "As an IT Specialist, I found iApplyNow to be a valuable resource. The personalized tech job recommendations and resume-building tools were instrumental in kickstarting my career. Thanks to iApplyNow, I secured a fantastic job that aligns perfectly with my tech skills and aspirations."
+  },
+  {
+    "id": 3,
+    "img": "https://i.ibb.co/hZ2BNLJ/young-beautiful-girl-posing-black-leather-jacket-park-1153-8104.jpg",
+    "name": "Sarah Chang",
+    "role": "Data Scientist",
+    "description": "As a Data Scientist, I've been using several job platforms, and iApplyNow stands out. The comprehensive tech company profiles and quick application process streamline the job-seeking process, making it efficient and effective. I appreciate iApplyNow's commitment to creating a positive and productive job search experience in the tech field."
+  },
+  {
+    "id": 4,
+    "img": "https://i.ibb.co/qDgdvt2/young-attractive-guy-144627-5970.jpg",
+    "name": "Alex Thompson",
+    "role": "Tech HR Specialist",
+    "description": "As a Tech HR Specialist, from an employer's perspective, iApplyNow's candidate matching algorithms are spot-on. It simplifies the hiring process by presenting highly qualified tech candidates based on our job requirements. Kudos to iApplyNow for its invaluable contribution to our tech recruitment efforts."
+  },
+  {
+    "id": 5,
+    "img": "https://i.ibb.co/6BrMsbL/young-indian-student-man-red-checkered-shirt-jeans-posed-city-with-mobile-phone-hands-627829-2674.jpg",
+    "name": "Raj Patel",
+    "role": "Tech Industry Analyst",
+    "description": "As a Tech Industry Analyst, iApplyNow has a robust tech job section. The filters are precise, and the real-time notifications ensure I never miss out on relevant opportunities in the fast-paced tech industry. Thanks to iApplyNow, I've successfully navigated the competitive tech job market and secured a position that aligns perfectly with my tech expertise and career goals."
+  },
+  {
+    "id": 6,
+    "img": "https://i.ibb.co/CVrRJbf/female-barista-with-tablet-making-order-coffee-shop-1303-31247.jpg",
+    "name": "Maria Hernandez",
+    "role": "Software Development Manager",
+    "description": "As a Software Development Manager, transitioning careers within the tech field can be challenging, but iApplyNow made it smoother. The career exploration tools and networking features provided valuable insights and connections in my new tech leadership role. I'm grateful for the support and tech resources that iApplyNow offers, empowering me to successfully pivot my tech career and pursue my passion."
+  }
+]

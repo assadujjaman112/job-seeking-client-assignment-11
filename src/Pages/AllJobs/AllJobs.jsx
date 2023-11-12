@@ -1,3 +1,4 @@
+import moment from "moment";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllJobs = () => {
@@ -25,8 +26,8 @@ const AllJobs = () => {
                 <th>{index + 1}</th>
                 <td>{job.poster}</td>
                 <td>{job.title}</td>
-                <td>{job.date}</td>
-                <td>{job.deadline}</td>
+                <td>{moment(job.date).format("Do MMMM YYYY")}</td>
+                <td>{moment(job.deadline).format("Do MMMM YYYY")}</td>
                 <td>{job.salary}</td>
                 <td>
                   <Link to={`/singleJob/${job._id}`}>

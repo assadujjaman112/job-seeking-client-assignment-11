@@ -1,47 +1,59 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
+import moment from "moment";
 
 const SingleJob = () => {
   const { user } = useContext(AuthContext);
   const job = useLoaderData();
   console.log(job);
   const {
+    poster,
+    email,
     category,
     date,
     deadline,
     description,
-    email,
     logo,
-    number,
     photo,
-    poster,
     salary,
+    number,
     title,
   } = job;
 
   const handleApply = (event) => {
     event.preventDefault();
-    const resume = event.target.resume.value;
+    const form = event.target;
+
+    const resume = form.resume.value;
+    const applicantEmail = form.email.value;
+    const applicant = form.name.value;
+    const posterEmail = email
+
 
     const jobWithoutId = {
-        category,
-        date,
-        deadline,
-        description,
-        email,
-        logo,
-        number,
-        photo,
-        poster,
-        salary,
-        title,
-        resume
-      };
+      poster,
+      posterEmail,
+      category,
+      date,
+      deadline,
+      description,
+      applicantEmail,
+      logo,
+      number,
+      photo,
+      applicant,
+      salary,
+      title,
+      resume,
+    };
 
     console.log("clicked", resume);
-    if (job.email === user.email) {
+    if (
+      job.email === user.email ||
+      moment(deadline).isBefore(moment(new Date()))
+    ) {
       Swal.fire({
         title: "Error!",
         text: "you can't apply for this job!!!",
@@ -65,7 +77,6 @@ const SingleJob = () => {
             icon: "success",
           });
           job.number = parseInt(job.number) + 1;
-          console.log(job);
         }
       });
   };
@@ -95,6 +106,10 @@ const SingleJob = () => {
             {job.salary}
           </p>
           <p className="text-lg">
+            <span className="font-extrabold">Application Deadline : </span>
+            {moment(job.deadline).format("Do MMMM YYYY")}
+          </p>
+          <p className="text-lg">
             <span className="font-extrabold">Number of Applicants : </span>
             {job.number}
           </p>
@@ -106,60 +121,64 @@ const SingleJob = () => {
           >
             Apply
           </button>
-          <form onSubmit={handleApply} action="">
           <dialog id="my_modal_1" className="modal">
             <div className="modal-box">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  defaultValue={user.displayName}
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  defaultValue={user.email}
-                  className="input input-bordered"
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Resume Link</span>
-                </label>
-                <input
-                  type="text"
-                  name="resume"
-                  placeholder="Resume Link"
-                  className="input input-bordered"
-                  required
-                />
-              </div>
+              <form onSubmit={handleApply} action="">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    defaultValue={user.displayName}
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    defaultValue={user.email}
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Resume Link</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="resume"
+                    placeholder="Resume Link"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
 
-              <div className="modal-action flex justify-center">
-                <input type="submit" value="submit"   className="btn w-1/3 bg-[#331D2C] text-white hover:text-black mb-5"/>
-                <form method="dialog" className="w-1/3">
-                  {/* if there is a button in form, it will close the modal */}
-                  <button className="btn w-full bg-[#331D2C] text-white hover:text-black mb-5">
-                    Close
-                  </button>
-                </form>
-              </div>
+                <div className="modal-action flex justify-center">
+                  <input
+                    type="submit"
+                    value="submit"
+                    className="btn w-1/3 bg-[#331D2C] text-white hover:text-black mb-5"
+                  />
+                  <form method="dialog" className="w-1/3">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn w-full bg-[#331D2C] text-white hover:text-black mb-5">
+                      Close
+                    </button>
+                  </form>
+                </div>
+              </form>
             </div>
           </dialog>
-          </form>
         </div>
       </div>
     </div>

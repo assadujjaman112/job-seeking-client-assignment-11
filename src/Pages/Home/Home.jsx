@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import JobDetails from "../../components/jobDetails";
 import { useLoaderData } from "react-router-dom";
+import Review from "../../components/Review";
 
 const Home = () => {
   const allJobs = useLoaderData();
@@ -131,6 +132,9 @@ const Home = () => {
             </div>
           </TabPanel>
         </Tabs>
+        <div>
+          <Review></Review>
+        </div>
       </div>
     </div>
   );

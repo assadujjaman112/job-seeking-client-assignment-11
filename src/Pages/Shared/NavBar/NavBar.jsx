@@ -144,6 +144,7 @@ const NavBar = () => {
         {user ? (
           <div className="flex gap-5">
             <img
+              title={user.displayName}
               className="w-12 h-12 rounded-full"
               src={user.photoURL}
               alt=""
