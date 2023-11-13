@@ -12,7 +12,7 @@ const Home = () => {
   const [jobs, setJobs] = useState(allJobs);
 
   // useEffect(() => {
-  //   fetch("http://localhost:5000/jobs")
+  //   fetch("https://job-seeking-server-pi.vercel.app/jobs")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setJobs(data);

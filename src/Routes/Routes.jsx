@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/jobs"),
+        loader: () => fetch("https://job-seeking-server-pi.vercel.app/jobs"),
       },
       {
         path: "/blog",
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       {
         path: "/allJobs",
         element: <AllJobs></AllJobs>,
-        loader: () => fetch("http://localhost:5000/jobs"),
+        loader: () => fetch("https://job-seeking-server-pi.vercel.app/jobs"),
       },
       {
         path: "/singleJob/:id",
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://job-seeking-server-pi.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/addAJob",
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
             <MyJobs></MyJobs>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/jobs"),
+        loader: () => fetch("https://job-seeking-server-pi.vercel.app/jobs"),
       },
       {
         path: "/updateJob/:id",
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://job-seeking-server-pi.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/appliedJobs",
@@ -77,7 +77,7 @@ const router = createBrowserRouter([
             <AppliedJobs></AppliedJobs>
           </PrivateRoute>
         ),
-        loader : ()=> fetch("http://localhost:5000/appliedJobs")
+        loader : ()=> fetch("https://job-seeking-server-pi.vercel.app/appliedJobs")
       },
       {
         path: "/signUp",

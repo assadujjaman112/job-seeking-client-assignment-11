@@ -61,7 +61,7 @@ const SingleJob = () => {
       });
       return;
     }
-    fetch("http://localhost:5000/appliedJobs", {
+    fetch("https://job-seeking-server-pi.vercel.app/appliedJobs", {
       method: "POST",
       headers: {
         "content-type": "application/json",
