@@ -1,8 +1,11 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Website Live Link : 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features about the website : 
+-A user can  login to the website . If they do not have an account then they can create a account also.
+-Our website has a page called "All Jobs" where a user can see all the jobs available on the website.
+-A user can post a job in the website. But to do that user must login to the website.
+-A user can update a job which he/she had posted. None can update any other's post. User can only update his posted job.
+-A user can apply for a job . To do that user have to login first because the apply for a job feature is private/protected. Without a register user none can apply.
+

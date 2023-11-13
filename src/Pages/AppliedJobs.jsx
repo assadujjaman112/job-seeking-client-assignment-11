@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import AppliedJobCart from "../components/AppliedJobCart";
+import { Helmet } from "react-helmet-async";
 
 const AppliedJobs = () => {
   const { user } = useContext(AuthContext);
@@ -38,6 +39,9 @@ const AppliedJobs = () => {
   };
   return (
     <div className="w-full bg-slate-100 py-5 md:py-10 lg:py-16 mb-5 md:mb-10 lg:mb-16">
+        <Helmet>
+        <title>iApplyNow | Applied Jobs</title>
+      </Helmet>
       <h1 className="text-center text-3xl md:text-4xl lg:text-5xl font-bold">
         Applied Jobs
       </h1>

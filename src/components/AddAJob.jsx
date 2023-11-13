@@ -3,6 +3,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const AddAJob = () => {
   const { user } = useContext(AuthContext);
@@ -61,6 +62,9 @@ const AddAJob = () => {
   };
   return (
     <div className="hero min-h-screen bg-base-200 mb-10 py-5 md:py-10 lg:py-16">
+      <Helmet>
+        <title>iApplyNow | Add A Job</title>
+      </Helmet>
       <div className="card flex-shrink-0 w-11/12 lg:w-3/5  mx-auto my-10 md:my-16 lg:my-0 shadow-2xl bg-base-100">
         <h1 className="text-center text-3xl font-bold mt-5">Add A Product</h1>
         <form onSubmit={handleAddJob} className="card-body">

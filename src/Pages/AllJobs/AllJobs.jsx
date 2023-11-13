@@ -1,5 +1,6 @@
 import moment from "moment";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllJobs = () => {
@@ -18,6 +19,9 @@ const AllJobs = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>iApplyNow | AllJobs</title>
+      </Helmet>
       <div className="overflow-x-auto py-5 md:py-10 lg:py-16 bg-base-200  mb-5 md:mb-10 lg:mb-16">
         <h1 className="text-center text-3xl md:text-4xl lg:text-5xl font-bold mb-5">
           All Jobs

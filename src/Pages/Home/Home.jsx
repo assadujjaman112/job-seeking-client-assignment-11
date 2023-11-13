@@ -4,6 +4,8 @@ import "react-tabs/style/react-tabs.css";
 import JobDetails from "../../components/jobDetails";
 import { useLoaderData } from "react-router-dom";
 import Review from "../../components/Review";
+import { Helmet } from "react-helmet-async";
+import AboutUs from "../../components/AboutUs";
 
 const Home = () => {
   const allJobs = useLoaderData();
@@ -41,6 +43,9 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>iApplyNow | Home</title>
+      </Helmet>
       <div
         className="hero min-h-screen"
         style={{
@@ -132,6 +137,9 @@ const Home = () => {
             </div>
           </TabPanel>
         </Tabs>
+        <div>
+          <AboutUs></AboutUs>
+        </div>
         <div>
           <Review></Review>
         </div>

@@ -1,10 +1,14 @@
 import moment from "moment";
+import { Helmet } from "react-helmet-async";
 
 const AppliedJobCart = ({ job }) => {
   const { poster, title, date, deadline, salary, number, category, photo } =
     job;
   return (
     <div className="card card-compact bg-white shadow-md">
+        <Helmet>
+        <title>iApplyNow | Applied Jobs</title>
+      </Helmet>
       <div className="w-full rounded-t-lg">
         <img src={photo} alt="" className="w-full rounded-t-lg" />
       </div>

@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const MyJobs = () => {
   const allJobs = useLoaderData();
@@ -45,6 +46,9 @@ const MyJobs = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>iApplyNow | MY Jobs</title>
+      </Helmet>
       <div className="overflow-x-auto py-5 md:py-10 lg:py-16 bg-base-200  mb-5 md:mb-10 lg:mb-16">
         <table className="table md:w-4/5 mx-auto">
           {/* head */}
