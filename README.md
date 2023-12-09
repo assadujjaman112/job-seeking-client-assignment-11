@@ -10,3 +10,15 @@ Features about the website :
 - A user can update a job which he/she had posted. None can update any other's post. User can only update his posted job.
 - A user can apply for a job . To do that user have to login first because the apply for a job feature is private/protected. Without a register user none can apply.
 
+
+Technologies that i used for this project :-
+
+- HTMl
+- CSS
+- Tailwindcss
+- JavaScript
+- React
+- Firebase
+- Node.js
+- Express.js
+
