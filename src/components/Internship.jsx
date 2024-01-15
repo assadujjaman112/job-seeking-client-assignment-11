@@ -115,7 +115,7 @@ const Internship = () => {
               team to work on graphic design projects, including branding,
               marketing materials, and digital content. This internship is
               perfect for graphic design students passionate about visual
-              communication. technology.
+              communication.
             </p>
           </div>
         </SwiperSlide>
