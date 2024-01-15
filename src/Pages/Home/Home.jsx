@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet-async";
 import AboutUs from "../../components/AboutUs";
 import JobSearchTips from "../../components/JobSearchTips";
 import Internship from "../../components/Internship";
+import TopCompanies from "../../components/TopCompanies";
 
 const Home = () => {
   const allJobs = useLoaderData();
@@ -144,6 +145,9 @@ const Home = () => {
         </section>
         <section className="mt-5 md:mt-8 lg:mt-12">
           <Internship></Internship>
+        </section>
+        <section>
+          <TopCompanies></TopCompanies>
         </section>
         <div>
           <AboutUs></AboutUs>
