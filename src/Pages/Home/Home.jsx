@@ -6,6 +6,8 @@ import { useLoaderData } from "react-router-dom";
 import Review from "../../components/Review";
 import { Helmet } from "react-helmet-async";
 import AboutUs from "../../components/AboutUs";
+import JobSearchTips from "../../components/JobSearchTips";
+import Internship from "../../components/Internship";
 
 const Home = () => {
   const allJobs = useLoaderData();
@@ -137,6 +139,12 @@ const Home = () => {
             </div>
           </TabPanel>
         </Tabs>
+        <section>
+          <JobSearchTips></JobSearchTips>
+        </section>
+        <section className="mt-5 md:mt-8 lg:mt-12">
+          <Internship></Internship>
+        </section>
         <div>
           <AboutUs></AboutUs>
         </div>

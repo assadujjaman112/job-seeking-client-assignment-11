@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const JobDetails = ({ job }) => {
   const { _id, poster, title, date, deadline, salary, number, category } = job;
   return (
-    <div className="card card-compact  bg-zinc-100 shadow-md p-8">
+    <div className="card card-compact  bg-zinc-100 shadow-md p-8 transition-transform ease-in hover:translate-y-1 hover:bg-zinc-300 hover:z-10 hover:scale-110 ">
       <div className="card-body">
         <p className="card-title">
           <span className="font-extrabold">Job Poster : </span>
@@ -20,11 +20,11 @@ const JobDetails = ({ job }) => {
         </p>
         <p className="text-lg">
           <span className="font-bold text-lg">Job Posted On : </span>
-          {moment(date).format( " Do MMMM YYYY ")}
+          {moment(date).format(" Do MMMM YYYY ")}
         </p>
         <p className="text-lg">
           <span className="font-bold text-lg">Application Deadline : </span>
-          {moment(deadline).format( " Do MMMM YYYY ")}
+          {moment(deadline).format(" Do MMMM YYYY ")}
         </p>
         <p className="text-lg">
           <span className="font-bold text-lg">Salary Range : $</span>
@@ -34,7 +34,7 @@ const JobDetails = ({ job }) => {
           <span className="font-bold text-lg">Applicants Number : </span>
           {number}
         </p>
-        <div className="card-actions">
+        <div className="card-actions ">
           <Link to={`/singleJob/${_id}`}>
             <button className="btn bg-[#331D2C] text-white hover:text-black">
               View details
