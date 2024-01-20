@@ -152,7 +152,7 @@ const NavBar = () => {
             <Link>
               <button
                 onClick={handleLogOut}
-                className="btn bg-[#331D2C] text-white hover:text-black"
+                className="btn btn-outline"
               >
                 Log out
               </button>
@@ -161,7 +161,7 @@ const NavBar = () => {
         ) : (
           <Link
             to="/login"
-            className="btn bg-[#331D2C] text-white hover:text-black"
+            className="btn btn-outline "
           >
             Login
           </Link>
