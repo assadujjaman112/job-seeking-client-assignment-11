@@ -17,12 +17,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement : <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("https://job-seeking-server-pi.vercel.app/jobs"),
       },
       {
         path: "/blog",
@@ -77,7 +76,8 @@ const router = createBrowserRouter([
             <AppliedJobs></AppliedJobs>
           </PrivateRoute>
         ),
-        loader : ()=> fetch("https://job-seeking-server-pi.vercel.app/appliedJobs")
+        loader: () =>
+          fetch("https://job-seeking-server-pi.vercel.app/appliedJobs"),
       },
       {
         path: "/signUp",

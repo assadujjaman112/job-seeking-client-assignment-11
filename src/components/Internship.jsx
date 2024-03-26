@@ -1,4 +1,3 @@
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -8,13 +7,23 @@ const Internship = () => {
   return (
     <div>
       <h1 className="text-3xl md:text-4xl lg:text-5xl text-center my-5 font-bold">
-      Internship Opportunities
+        Internship Opportunities
       </h1>
       <Swiper
         slidesPerView={3}
         spaceBetween={30}
         pagination={{
           clickable: true,
+          breakpoints: {
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          },
         }}
         modules={[Pagination]}
         className="mySwiper mt-10"
@@ -102,7 +111,7 @@ const Internship = () => {
         <SwiperSlide>
           <div className="bg-zinc-100 rounded-lg p-5">
             <h1 className=" text-center text-2xl font-bold my-5">
-            Data Analytics Intern - Data Insights Corporation
+              Data Analytics Intern - Data Insights Corporation
             </h1>
             <p>
               <span className="font-bold">Location : </span>Dhaka, Bangladesh

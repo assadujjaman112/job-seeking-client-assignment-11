@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const JobDetails = ({ job }) => {
   const { _id, poster, title, date, deadline, salary, number, category } = job;
   return (
-    <div className="card card-compact  bg-zinc-100 shadow-md p-8 transition-transform ease-in hover:translate-y-1 hover:bg-zinc-300 hover:z-10 hover:scale-110 ">
+    <div className="card card-compact  bg-zinc-100 shadow-md p-8 transition-transform ease-in hover:-translate-y-1 hover:shadow-zinc-500 hover:shadow-xl duration-700">
       <div className="card-body">
         <p className="card-title">
           <span className="font-extrabold">Job Poster : </span>

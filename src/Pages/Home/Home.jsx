@@ -1,31 +1,34 @@
-import { useState } from "react";
+
+
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import JobDetails from "../../components/jobDetails";
-import { useLoaderData } from "react-router-dom";
 import Review from "../../components/Review";
 import { Helmet } from "react-helmet-async";
 import AboutUs from "../../components/AboutUs";
 import JobSearchTips from "../../components/JobSearchTips";
 import Internship from "../../components/Internship";
 import TopCompanies from "../../components/TopCompanies";
+import { useState } from "react";
+import useAllJobs from "../../Hooks/useAllJobs";
 
 const Home = () => {
-  const allJobs = useLoaderData();
+  const allJobs = useAllJobs();
   const [jobs, setJobs] = useState(allJobs);
 
   // useEffect(() => {
-  //   fetch("https://job-seeking-server-pi.vercel.app/jobs")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setJobs(data);
-  //     });
-  // }, []);
+  // //   fetch("http://localhost:5000/jobs")
+  // //     .then((res) => res.json())
+  // //     .then((data) => {
+  // //       setJobs(data);
+
+  // //     });
+  // // }, []);
 
   const handleAllJobs = () => {
     setJobs(allJobs);
   };
-
+console.log(allJobs)
   const handleOnSite = () => {
     const onSiteJobs = allJobs?.filter((job) => job.category === "On Site");
     setJobs(onSiteJobs);
@@ -88,7 +91,7 @@ const Home = () => {
         <Tabs>
           <TabList>
             <Tab>
-              <button onClick={handleAllJobs}>All Job</button>
+              <button onClick={handleAllJobs} >All Job</button>
             </Tab>
             <Tab>
               <button onClick={handleOnSite}>On Site Job</button>
