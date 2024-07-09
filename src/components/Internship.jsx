@@ -29,7 +29,7 @@ const Internship = () => {
         className="mySwiper mt-10"
       >
         <SwiperSlide>
-          <div className="bg-zinc-100 rounded-lg p-5 ">
+          <div className="bg-stone-200 rounded-lg p-5 ">
             <h1 className=" text-center text-2xl font-bold my-5">
               Digital Marketing Intern - XYZ Tech Solutions
             </h1>
@@ -49,7 +49,7 @@ const Internship = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="bg-zinc-100 rounded-lg p-5 ">
+          <div className="bg-stone-200 rounded-lg p-5 ">
             <h1 className=" text-center text-2xl font-bold my-5">
               Software Development Internship - ABC Software
             </h1>
@@ -69,7 +69,7 @@ const Internship = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="bg-zinc-100 rounded-lg p-5">
+          <div className="bg-stone-200 rounded-lg p-5">
             <h1 className=" text-center text-2xl font-bold my-5">
               Finance Intern - Global Finance Solutions
             </h1>
@@ -89,7 +89,7 @@ const Internship = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="bg-zinc-100 rounded-lg p-5">
+          <div className="bg-stone-200 rounded-lg p-5">
             <h1 className=" text-center text-2xl font-bold my-5">
               Graphic Design Internship - Creative Studio
             </h1>
@@ -109,7 +109,7 @@ const Internship = () => {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="bg-zinc-100 rounded-lg p-5">
+          <div className="bg-stone-200 rounded-lg p-5">
             <h1 className=" text-center text-2xl font-bold my-5">
               Data Analytics Intern - Data Insights Corporation
             </h1>

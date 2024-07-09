@@ -12,31 +12,31 @@ const TopCompanies = () => {
         featured on our platform
       </p>
       <div className="flex flex-wrap gap-5 justify-center mt-5 md:mt-8 lg:mt-12 text-center">
-        <div className="bg-zinc-300 py-8 px-5 rounded-lg w-64">
+        <div className="bg-stone-200 py-8 px-5 rounded-lg w-64">
           <h1 className="text-xl font-bold">Apple Inc</h1>
           <p className="font-semibold text-sm">Technology</p>
         </div>
-        <div className="bg-zinc-300 py-8 px-5 rounded-lg">
+        <div className="bg-stone-200 py-8 px-5 rounded-lg">
           <h1 className="text-xl font-bold">Microsoft Corporation</h1>
           <p className="font-semibold text-sm">Technology</p>
         </div>
-        <div className="bg-zinc-300 py-8 px-5 rounded-lg">
+        <div className="bg-stone-200 py-8 px-5 rounded-lg">
           <h1 className="text-xl font-bold">JPMorgan Chase & Co.</h1>
           <p className="font-semibold text-sm">Finance</p>
         </div>
-        <div className="bg-zinc-300 py-8 px-5 rounded-lg">
+        <div className="bg-stone-200 py-8 px-5 rounded-lg">
           <h1 className="text-xl font-bold">Bank of America Corp.</h1>
           <p className="font-semibold text-sm">Finance</p>
         </div>
-        <div className="bg-zinc-300 py-8 px-5 rounded-lg">
+        <div className="bg-stone-200 py-8 px-5 rounded-lg">
           <h1 className="text-xl font-bold">Toyota Motor Corporation</h1>
           <p className="font-semibold text-sm">Automotive</p>
         </div>
-        <div className="bg-zinc-300 py-8 px-5 rounded-lg">
+        <div className="bg-stone-200 py-8 px-5 rounded-lg">
           <h1 className="text-xl font-bold">General Motors Company</h1>
           <p className="font-semibold text-sm">Automotive</p>
         </div>
-        <div className="bg-zinc-300 py-8 px-5 rounded-lg">
+        <div className="bg-stone-200 py-8 px-5 rounded-lg">
           <h1 className="text-xl font-bold">Novartis International AG</h1>
           <p className="font-semibold text-sm">Healthcare</p>
         </div>

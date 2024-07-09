@@ -11,7 +11,7 @@ const JobSearchTips = () => {
         competitive job market.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5 md:mt-8 lg:mt-12">
-        <div className="bg-zinc-100 rounded-lg py-5">
+        <div className="bg-stone-200 rounded-lg py-5">
           <h1 className=" text-center text-2xl font-bold my-5">
             Crafting an Impressive Resume
           </h1>
@@ -34,7 +34,7 @@ const JobSearchTips = () => {
             </li>
           </ol>
         </div>
-        <div className="bg-zinc-100 rounded-lg py-5">
+        <div className="bg-stone-200 rounded-lg py-5">
           <h1 className=" text-center text-2xl font-bold my-5">
             Building an Effective LinkedIn Profile
           </h1>
@@ -57,7 +57,7 @@ const JobSearchTips = () => {
             </li>
           </ol>
         </div>
-        <div className="bg-zinc-100 rounded-lg py-5">
+        <div className="bg-stone-200 rounded-lg py-5">
           <h1 className=" text-center text-2xl font-bold my-5">
             Preparing for Interviews
           </h1>

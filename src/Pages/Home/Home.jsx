@@ -1,5 +1,3 @@
-
-
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import JobDetails from "../../components/jobDetails";
@@ -9,26 +7,22 @@ import AboutUs from "../../components/AboutUs";
 import JobSearchTips from "../../components/JobSearchTips";
 import Internship from "../../components/Internship";
 import TopCompanies from "../../components/TopCompanies";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAllJobs from "../../Hooks/useAllJobs";
 
 const Home = () => {
   const allJobs = useAllJobs();
-  const [jobs, setJobs] = useState(allJobs);
 
-  // useEffect(() => {
-  // //   fetch("http://localhost:5000/jobs")
-  // //     .then((res) => res.json())
-  // //     .then((data) => {
-  // //       setJobs(data);
+  const [jobs, setJobs] = useState([]);
 
-  // //     });
-  // // }, []);
+  useEffect(() => {
+    setJobs(allJobs);
+  }, [allJobs]);
 
   const handleAllJobs = () => {
     setJobs(allJobs);
   };
-console.log(allJobs)
+
   const handleOnSite = () => {
     const onSiteJobs = allJobs?.filter((job) => job.category === "On Site");
     setJobs(onSiteJobs);
@@ -91,7 +85,7 @@ console.log(allJobs)
         <Tabs>
           <TabList>
             <Tab>
-              <button onClick={handleAllJobs} >All Job</button>
+              <button onClick={handleAllJobs}>All Job</button>
             </Tab>
             <Tab>
               <button onClick={handleOnSite}>On Site Job</button>
@@ -108,35 +102,35 @@ console.log(allJobs)
           </TabList>
 
           <TabPanel>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5">
               {jobs?.map((job) => (
                 <JobDetails key={job._id} job={job}></JobDetails>
               ))}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5">
               {jobs?.map((job) => (
                 <JobDetails key={job._id} job={job}></JobDetails>
               ))}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5">
               {jobs?.map((job) => (
                 <JobDetails key={job._id} job={job}></JobDetails>
               ))}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5">
               {jobs?.map((job) => (
                 <JobDetails key={job._id} job={job}></JobDetails>
               ))}
             </div>
           </TabPanel>
           <TabPanel>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-7 mt-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5">
               {jobs?.map((job) => (
                 <JobDetails key={job._id} job={job}></JobDetails>
               ))}
