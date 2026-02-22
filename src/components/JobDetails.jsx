@@ -70,7 +70,7 @@ const JobDetails = ({ job }) => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="absolute inset-0 bg-gray-950 opacity-[80%] rounded-lg"></div>
+      <div className="absolute inset-0 bg-gray-950 opacity-[70%] rounded-lg"></div>
       <div className="relative px-1 space-y-1 py-5 z-10">
         <p className="text-xl">
           <span className="font-bold text-lg">Job Poster : </span>
