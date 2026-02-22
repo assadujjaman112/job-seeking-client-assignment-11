@@ -1,6 +1,6 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import JobDetails from "../../components/jobDetails";
+import JobDetails from "../../components/JobDetails";
 import Review from "../../components/Review";
 import { Helmet } from "react-helmet-async";
 import AboutUs from "../../components/AboutUs";
@@ -8,7 +8,7 @@ import JobSearchTips from "../../components/JobSearchTips";
 import Internship from "../../components/Internship";
 import TopCompanies from "../../components/TopCompanies";
 import { useEffect, useState } from "react";
-import useAllJobs from "../../Hooks/useAllJobs";
+import useAllJobs from "../../hooks/useAllJobs";
 
 const Home = () => {
   const allJobs = useAllJobs();

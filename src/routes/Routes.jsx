@@ -1,42 +1,42 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../Layout/MainLayout";
-import Home from "../Pages/Home/Home";
-import AllJobs from "../Pages/AllJobs/AllJobs";
-import Login from "../Pages/Login/Login";
-import SignUp from "../Pages/SignUp";
-import SingleJob from "../components/SingleJob";
-import Blog from "../Pages/blog/Blog";
-import PrivateRoute from "./PrivateRoute";
-import AddAJob from "../components/AddAJob";
-import MyJobs from "../Pages/MyJobs";
-import UpdateJob from "../components/UpdateJob";
-import AppliedJobs from "../Pages/AppliedJobs";
+import MainLayout from "../layout/MainLayout";
 import ErrorPage from "../components/ErrorPage";
+import Home from "../pages/home/Home";
+import Blog from "../pages/blog/Blog";
+import AllJobs from "../pages/allJobs/AllJobs";
+import PrivateRoute from "./PrivateRoute";
+import SingleJob from "../components/SingleJob";
+import AddAJob from "../components/AddAJob";
+import MyJobs from "../pages/MyJobs";
+import UpdateJob from "../components/UpdateJob";
+import AppliedJobs from "../pages/AppliedJobs";
+import SignUp from "../pages/SignUp";
+import Login from "../pages/login/Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout></MainLayout>,
-    errorElement: <ErrorPage></ErrorPage>,
+    element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
       },
       {
         path: "/blog",
-        element: <Blog></Blog>,
+        element: <Blog />,
       },
       {
         path: "/allJobs",
-        element: <AllJobs></AllJobs>,
+        element: <AllJobs />,
         loader: () => fetch("https://job-seeking-server-pi.vercel.app/jobs"),
       },
       {
         path: "/singleJob/:id",
         element: (
           <PrivateRoute>
-            <SingleJob></SingleJob>
+            <SingleJob />
           </PrivateRoute>
         ),
         loader: ({ params }) =>
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         path: "/addAJob",
         element: (
           <PrivateRoute>
-            <AddAJob></AddAJob>
+            <AddAJob />
           </PrivateRoute>
         ),
       },
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         path: "/myJobs",
         element: (
           <PrivateRoute>
-            <MyJobs></MyJobs>
+            <MyJobs />
           </PrivateRoute>
         ),
         loader: () => fetch("https://job-seeking-server-pi.vercel.app/jobs"),
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
         path: "/updateJob/:id",
         element: (
           <PrivateRoute>
-            <UpdateJob></UpdateJob>
+            <UpdateJob />
           </PrivateRoute>
         ),
         loader: ({ params }) =>
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
         path: "/appliedJobs",
         element: (
           <PrivateRoute>
-            <AppliedJobs></AppliedJobs>
+            <AppliedJobs />
           </PrivateRoute>
         ),
         loader: () =>
@@ -81,11 +81,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/signUp",
-        element: <SignUp></SignUp>,
+        element: <SignUp />,
       },
       {
         path: "/login",
-        element: <Login></Login>,
+        element: <Login />,
       },
     ],
   },

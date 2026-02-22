@@ -1,6 +1,6 @@
 import { Outlet, useNavigation } from "react-router-dom";
-import Footer from "../Pages/Shared/Footer/Footer";
-import NavBar from "../Pages/Shared/NavBar/NavBar";
+import Footer from "../pages/shared/footer/Footer";
+import NavBar from "../pages/shared/navBar/NavBar";
 
 const MainLayout = () => {
   const navigation = useNavigation();
