@@ -1,5 +1,9 @@
 import logo from "../../../assets/images/logo.png";
-import { HiOutlinePhone, HiOutlineMail, HiOutlineLocationMarker } from "react-icons/hi";
+import {
+  HiOutlinePhone,
+  HiOutlineMail,
+  HiOutlineLocationMarker,
+} from "react-icons/hi";
 const Footer = () => {
   return (
     <footer className=" p-10 bg-base-200 text-base-content">
@@ -14,16 +18,25 @@ const Footer = () => {
         </aside>
         <div>
           <h1 className="footer-title">Services</h1>
-          <a>Job Search</a>
-          <a>Resume Builder</a>
-          <a>Career Resources</a>
-          <a>Skill Assessment</a>
+          <a href="/" className="hover:underline">Job Search</a>
+          <a href="/resume-builder" className="hover:underline">Resume Builder</a>
+          <a href="/career-resources" className="hover:underline">Career Resources</a>
+          <a href="/skill-assessment" className="hover:underline">Skill Assessment</a>
         </div>
         <div>
           <h1 className="footer-title">Contact</h1>
-          <p className="flex items-center gap-2"><HiOutlineMail  className="text-xl"></HiOutlineMail> Email : iapplynow@gmail.com</p>
-          <p className="flex items-center gap-2"><HiOutlinePhone className="text-xl"></HiOutlinePhone> Phone : 01344669990</p>
-          <p className="flex items-center gap-2"><HiOutlineLocationMarker className="text-xl"></HiOutlineLocationMarker> Address : Dhanmondi, Dhaka 1215</p>
+          <p className="flex items-center gap-2">
+            <HiOutlineMail className="text-xl"></HiOutlineMail> Email :
+            iapplynow@gmail.com
+          </p>
+          <p className="flex items-center gap-2">
+            <HiOutlinePhone className="text-xl"></HiOutlinePhone> Phone :
+            01344669990
+          </p>
+          <p className="flex items-center gap-2">
+            <HiOutlineLocationMarker className="text-xl"></HiOutlineLocationMarker>{" "}
+            Address : Dhanmondi, Dhaka 1215
+          </p>
         </div>
         <nav>
           <h1 className="footer-title">Social</h1>
@@ -64,7 +77,9 @@ const Footer = () => {
           </div>
         </nav>
       </div>
-      <p className="text-center mt-16 font-bold">Copyright © 2023 - All right reserved by iApplyNow.com</p>
+      <p className="text-center mt-16 font-bold">
+        Copyright © 2023 - All right reserved by iApplyNow.com
+      </p>
     </footer>
   );
 };
