@@ -18,10 +18,30 @@ const Footer = () => {
         </aside>
         <div>
           <h1 className="footer-title">Services</h1>
-          <a href="/" className="hover:underline">Job Search</a>
-          <a href="/resume-builder" className="hover:underline">Resume Builder</a>
-          <a href="/career-resources" className="hover:underline">Career Resources</a>
-          <a href="/skill-assessment" className="hover:underline">Skill Assessment</a>
+          <a
+            href="/"
+            className="hover:underline hover:text-blue-800 hover:font-semibold"
+          >
+            Job Search
+          </a>
+          <a
+            href="/resume-builder"
+            className="hover:underline  hover:text-blue-800 hover:font-semibold"
+          >
+            Resume Builder
+          </a>
+          <a
+            href="/career-resources"
+            className="hover:underline hover:text-blue-800 hover:font-semibold"
+          >
+            Career Resources
+          </a>
+          <a
+            href="/skill-assessment"
+            className="hover:underline hover:text-blue-800 hover:font-semibold"
+          >
+            Skill Assessment
+          </a>
         </div>
         <div>
           <h1 className="footer-title">Contact</h1>
