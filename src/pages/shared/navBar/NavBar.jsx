@@ -14,8 +14,8 @@ const NavBar = () => {
             isPending
               ? "pending"
               : isActive
-              ? "bg-[#331D2C] text-white mr-1"
-              : ""
+                ? "bg-[#331D2C] text-white mr-1"
+                : ""
           }
         >
           Home
@@ -28,8 +28,8 @@ const NavBar = () => {
             isPending
               ? "pending"
               : isActive
-              ? "bg-[#331D2C] text-white mr-1"
-              : ""
+                ? "bg-[#331D2C] text-white mr-1"
+                : ""
           }
         >
           Blogs
@@ -42,8 +42,8 @@ const NavBar = () => {
             isPending
               ? "pending"
               : isActive
-              ? "bg-[#331D2C] text-white mr-1 "
-              : ""
+                ? "bg-[#331D2C] text-white mr-1 "
+                : ""
           }
         >
           All Jobs
@@ -57,8 +57,8 @@ const NavBar = () => {
               isPending
                 ? "pending"
                 : isActive
-                ? "bg-[#331D2C] text-white mr-1 "
-                : ""
+                  ? "bg-[#331D2C] text-white mr-1 "
+                  : ""
             }
           >
             Add A Job
@@ -73,8 +73,8 @@ const NavBar = () => {
               isPending
                 ? "pending"
                 : isActive
-                ? "bg-[#331D2C] text-white mr-1 "
-                : ""
+                  ? "bg-[#331D2C] text-white mr-1 "
+                  : ""
             }
           >
             My Jobs
@@ -89,8 +89,8 @@ const NavBar = () => {
               isPending
                 ? "pending"
                 : isActive
-                ? "bg-[#331D2C] text-white mr-1 "
-                : ""
+                  ? "bg-[#331D2C] text-white mr-1 "
+                  : ""
             }
           >
             Applied Jobs
@@ -150,19 +150,13 @@ const NavBar = () => {
               alt=""
             />
             <Link>
-              <button
-                onClick={handleLogOut}
-                className="btn btn-outline"
-              >
+              <button onClick={handleLogOut} className="btn btn-outline">
                 Log out
               </button>
             </Link>
           </div>
         ) : (
-          <Link
-            to="/login"
-            className="btn btn-outline "
-          >
+          <Link to="/login" className="btn btn-outline ">
             Login
           </Link>
         )}
