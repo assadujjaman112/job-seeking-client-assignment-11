@@ -104,53 +104,53 @@ const Home = () => {
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5">
               {jobs?.map((job) => (
-                <JobDetails key={job._id} job={job}></JobDetails>
+                <JobDetails key={job._id} job={job} />
               ))}
             </div>
           </TabPanel>
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5">
               {jobs?.map((job) => (
-                <JobDetails key={job._id} job={job}></JobDetails>
+                <JobDetails key={job._id} job={job} />
               ))}
             </div>
           </TabPanel>
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5">
               {jobs?.map((job) => (
-                <JobDetails key={job._id} job={job}></JobDetails>
+                <JobDetails key={job._id} job={job} />
               ))}
             </div>
           </TabPanel>
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5">
               {jobs?.map((job) => (
-                <JobDetails key={job._id} job={job}></JobDetails>
+                <JobDetails key={job._id} job={job} />
               ))}
             </div>
           </TabPanel>
           <TabPanel>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-5">
               {jobs?.map((job) => (
-                <JobDetails key={job._id} job={job}></JobDetails>
+                <JobDetails key={job._id} job={job} />
               ))}
             </div>
           </TabPanel>
         </Tabs>
         <section>
-          <JobSearchTips></JobSearchTips>
+          <JobSearchTips />
         </section>
         <section className="mt-5 md:mt-8 lg:mt-12">
-          <Internship></Internship>
+          <Internship />
         </section>
         <section>
-          <TopCompanies></TopCompanies>
+          <TopCompanies />
         </section>
         <div>
-          <AboutUs></AboutUs>
+          <AboutUs />
         </div>
         <div>
-          <Review></Review>
+          <Review />
         </div>
       </div>
     </div>
