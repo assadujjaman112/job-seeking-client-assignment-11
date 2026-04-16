@@ -1,45 +1,51 @@
+const companies = [
+  { name: "Apple Inc.", industry: "Technology", initials: "AP", avatarStyle: "bg-gray-900 text-white" },
+  { name: "Microsoft", industry: "Technology", initials: "MS", avatarStyle: "bg-blue-600 text-white" },
+  { name: "JPMorgan Chase", industry: "Finance", initials: "JP", avatarStyle: "bg-blue-900 text-white" },
+  { name: "Bank of America", industry: "Finance", initials: "BA", avatarStyle: "bg-red-700 text-white" },
+  { name: "Toyota Motor", industry: "Automotive", initials: "TM", avatarStyle: "bg-red-600 text-white" },
+  { name: "General Motors", industry: "Automotive", initials: "GM", avatarStyle: "bg-blue-700 text-white" },
+  { name: "Novartis", industry: "Healthcare", initials: "NV", avatarStyle: "bg-emerald-600 text-white" },
+];
+
+const industryBadge = {
+  Technology: "bg-blue-100 text-blue-700",
+  Finance: "bg-purple-100 text-purple-700",
+  Automotive: "bg-orange-100 text-orange-700",
+  Healthcare: "bg-emerald-100 text-emerald-700",
+};
+
 const TopCompanies = () => {
   return (
     <div>
-      <h1 className="text-3xl md:text-4xl lg:text-5xl text-center my-5 font-bold">
-        Top Companies
-      </h1>
-      <p className="w-11/12 md:w-4/5 lg:w-2/3 text-center mx-auto my-3">
-        Explore career opportunities with our Top Companies section, showcasing
-        industry leaders known for excellence and innovation. Discover workplace
-        cultures, job openings, and unique benefits, propelling your career to
-        new heights. Elevate your professional journey with the best employers
-        featured on our platform
-      </p>
-      <div className="flex flex-wrap gap-5 justify-center mt-5 md:mt-8 lg:mt-12 text-center">
-        <div className="bg-stone-200 py-8 px-5 rounded-lg w-64">
-          <h1 className="text-xl font-bold">Apple Inc</h1>
-          <p className="font-semibold text-sm">Technology</p>
-        </div>
-        <div className="bg-stone-200 py-8 px-5 rounded-lg">
-          <h1 className="text-xl font-bold">Microsoft Corporation</h1>
-          <p className="font-semibold text-sm">Technology</p>
-        </div>
-        <div className="bg-stone-200 py-8 px-5 rounded-lg">
-          <h1 className="text-xl font-bold">JPMorgan Chase & Co.</h1>
-          <p className="font-semibold text-sm">Finance</p>
-        </div>
-        <div className="bg-stone-200 py-8 px-5 rounded-lg">
-          <h1 className="text-xl font-bold">Bank of America Corp.</h1>
-          <p className="font-semibold text-sm">Finance</p>
-        </div>
-        <div className="bg-stone-200 py-8 px-5 rounded-lg">
-          <h1 className="text-xl font-bold">Toyota Motor Corporation</h1>
-          <p className="font-semibold text-sm">Automotive</p>
-        </div>
-        <div className="bg-stone-200 py-8 px-5 rounded-lg">
-          <h1 className="text-xl font-bold">General Motors Company</h1>
-          <p className="font-semibold text-sm">Automotive</p>
-        </div>
-        <div className="bg-stone-200 py-8 px-5 rounded-lg">
-          <h1 className="text-xl font-bold">Novartis International AG</h1>
-          <p className="font-semibold text-sm">Healthcare</p>
-        </div>
+      <div className="text-center mb-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+          Top <span className="text-[#331D2C]">Companies</span>
+        </h2>
+        <p className="text-gray-500 mt-2 max-w-xl mx-auto">
+          Explore career opportunities with industry-leading employers known for excellence and innovation.
+        </p>
+        <div className="w-16 h-1 bg-amber-400 mx-auto mt-4 rounded-full"></div>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        {companies.map((company) => (
+          <div
+            key={company.name}
+            className="bg-white rounded-2xl border border-gray-100 p-6 flex flex-col items-center text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+          >
+            <div
+              className={`w-14 h-14 rounded-xl ${company.avatarStyle} flex items-center justify-center text-lg font-extrabold mb-3`}
+            >
+              {company.initials}
+            </div>
+            <h3 className="font-bold text-gray-800 text-sm mb-2">{company.name}</h3>
+            <span
+              className={`text-xs px-2.5 py-1 rounded-full font-medium ${industryBadge[company.industry] || "bg-gray-100 text-gray-600"}`}
+            >
+              {company.industry}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );

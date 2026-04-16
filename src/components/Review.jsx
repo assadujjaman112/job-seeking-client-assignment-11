@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { AiOutlineStar } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
+import { BsQuote } from "react-icons/bs";
 
 const Review = () => {
   const [reviews, setReviews] = useState();
@@ -8,33 +9,44 @@ const Review = () => {
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
-  return (
-    <div className="mt-5 md:mt-10 lg:mt-16">
-      <h1 className="text-center font-bold text-3xl md:5xl lg:7xl my-5">
-        Client Reviews
-      </h1>
-      <div className="flex items-center justify-center">
-        <p className="text-center text-2xl mr-5"> 4.7/5</p>
-        <AiOutlineStar className="text-3xl text-yellow-600"></AiOutlineStar>
-        <AiOutlineStar className="text-3xl text-yellow-600"></AiOutlineStar>
-        <AiOutlineStar className="text-3xl text-yellow-600"></AiOutlineStar>
-        <AiOutlineStar className="text-3xl text-yellow-600"></AiOutlineStar>
-        <AiOutlineStar className="text-3xl text-yellow-600"></AiOutlineStar>
-      </div>
-      <p className="text-lg text-center">Based on 10,000 Reviews</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
+  return (
+    <div>
+      <div className="text-center mb-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+          What Our <span className="text-[#331D2C]">Users Say</span>
+        </h2>
+        <div className="flex items-center justify-center gap-1 mt-3">
+          {[...Array(5)].map((_, i) => (
+            <AiFillStar key={i} className="text-amber-400 text-xl" />
+          ))}
+          <span className="ml-2 text-gray-700 font-semibold">4.7/5</span>
+          <span className="text-gray-400 text-sm ml-1">· 10,000 Reviews</span>
+        </div>
+        <div className="w-16 h-1 bg-amber-400 mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {reviews?.map((review) => (
           <div
             key={review.id}
-            className="text-center bg-stone-200 px-5 py-8 rounded-lg space-y-5"
+            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col"
           >
-            <div className="flex justify-center">
-              <img className="rounded-full w-28 h-28" src={review.img} alt="" />
+            <BsQuote className="text-4xl text-[#331D2C]/20 mb-3" />
+            <p className="text-gray-600 text-sm leading-relaxed flex-1">
+              {review.description}
+            </p>
+            <div className="mt-6 flex items-center gap-4">
+              <img
+                className="w-12 h-12 rounded-full object-cover ring-2 ring-amber-400 ring-offset-2"
+                src={review.img}
+                alt=""
+              />
+              <div>
+                <h4 className="font-bold text-gray-900 text-sm">{review.name}</h4>
+                <p className="text-xs text-gray-500">{review.role}</p>
+              </div>
             </div>
-            <h1 className="text-xl font-bold">{review.name}</h1>
-            <p className="font-bold">{review.role}</p>
-            <p>{review.description}</p>
           </div>
         ))}
       </div>
