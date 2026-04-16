@@ -10,9 +10,9 @@ import TopCompanies from "../../components/TopCompanies";
 import HowItWorks from "../../components/HowItWorks";
 import JobCategories from "../../components/JobCategories";
 import NewsletterBanner from "../../components/NewsletterBanner";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import useAllJobs from "../../hooks/useAllJobs";
-import { FiSearch, FiBriefcase, FiUsers, FiAward, FiTrendingUp } from "react-icons/fi";
+import { FiSearch, FiBriefcase, FiUsers, FiAward, FiTrendingUp, FiX } from "react-icons/fi";
 
 const heroStats = [
   { icon: FiBriefcase, count: "500+", label: "Active Jobs" },
@@ -21,10 +21,23 @@ const heroStats = [
   { icon: FiTrendingUp, count: "95%", label: "Success Rate" },
 ];
 
+const categoryKeywords = {
+  "Engineering & IT": ["engineer", "developer", "software", "web", "tech", "data", "system", "program", "network"],
+  "Marketing": ["marketing", "seo", "content", "brand", "social media", "digital"],
+  "Finance": ["finance", "account", "financial", "banking", "analyst", "audit", "invest"],
+  "Design & Creative": ["design", "creative", "ui", "ux", "graphic", "visual", "art"],
+  "Healthcare": ["health", "medical", "nurse", "doctor", "pharma", "clinic"],
+  "Education": ["teach", "tutor", "education", "trainer", "instructor", "lecturer"],
+  "Sales": ["sales", "business development", "account executive", "revenue"],
+  "Customer Support": ["support", "customer service", "help desk", "service"],
+};
+
 const Home = () => {
   const { allJobs, loading } = useAllJobs();
+  const jobsSectionRef = useRef(null);
 
   const [jobs, setJobs] = useState([]);
+  const [activeCategory, setActiveCategory] = useState(null);
 
   useEffect(() => {
     setJobs(allJobs);
@@ -52,7 +65,33 @@ const Home = () => {
     setJobs(partTimeJobs);
   };
 
-  const jobGrid = (
+  const handleCategorySelect = (category) => {
+    const keywords = categoryKeywords[category];
+    const filtered = allJobs?.filter((job) =>
+      keywords.some((kw) => job.title.toLowerCase().includes(kw))
+    );
+    setJobs(filtered);
+    setActiveCategory(category);
+    jobsSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleClearCategory = () => {
+    setJobs(allJobs);
+    setActiveCategory(null);
+  };
+
+  const jobGrid = jobs?.length === 0 ? (
+    <div className="text-center py-16">
+      <FiBriefcase className="text-gray-300 text-5xl mx-auto mb-4" />
+      <p className="text-gray-500 font-medium">No jobs found in this category.</p>
+      <button
+        onClick={handleClearCategory}
+        className="mt-4 text-sm text-[#331D2C] font-semibold underline"
+      >
+        Clear filter
+      </button>
+    </div>
+  ) : (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
       {jobs?.map((job) => (
         <JobDetails key={job._id} job={job} />
@@ -184,12 +223,24 @@ const Home = () => {
         <section><HowItWorks /></section>
 
         {/* Jobs Tabs */}
-        <section>
+        <section ref={jobsSectionRef}>
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
               Browse <span className="text-[#331D2C]">Job Listings</span>
             </h2>
-            <p className="text-gray-500 mt-2">Explore opportunities across all categories</p>
+            {activeCategory ? (
+              <div className="flex items-center justify-center gap-2 mt-3">
+                <span className="text-sm text-gray-500">Showing:</span>
+                <span className="inline-flex items-center gap-1.5 bg-[#331D2C] text-white text-sm px-3 py-1 rounded-full font-semibold">
+                  {activeCategory}
+                  <button onClick={handleClearCategory} className="text-white/70 hover:text-white transition-colors">
+                    <FiX className="text-xs" />
+                  </button>
+                </span>
+              </div>
+            ) : (
+              <p className="text-gray-500 mt-2">Explore opportunities across all categories</p>
+            )}
             <div className="w-16 h-1 bg-amber-400 mx-auto mt-4 rounded-full"></div>
           </div>
           <Tabs>
@@ -208,7 +259,7 @@ const Home = () => {
           </Tabs>
         </section>
 
-        <section><JobCategories /></section>
+        <section><JobCategories activeCategory={activeCategory} onSelect={handleCategorySelect} /></section>
         <section><JobSearchTips /></section>
         <section><Internship /></section>
         <section><TopCompanies /></section>
