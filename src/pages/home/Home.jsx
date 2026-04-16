@@ -76,41 +76,69 @@ const Home = () => {
           className="absolute bottom-0 left-0 w-72 h-72 rounded-full opacity-10 pointer-events-none"
           style={{ background: "radial-gradient(circle, #a78bfa, transparent)", transform: "translate(-30%, 30%)" }}
         />
-        <div className="relative w-11/12 md:w-4/5 mx-auto py-20 md:py-28 text-center">
-          <span className="inline-block bg-amber-400 text-amber-900 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
-            #1 Job Platform in Bangladesh
-          </span>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-5">
-            Find Your <span className="text-amber-400">Dream Job</span>
-            <br className="hidden md:block" /> Today
-          </h1>
-          <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto mb-10">
-            Your path to professional success begins here. Connect with top
-            companies, explore thousands of opportunities, and land the role
-            that matches your ambitions.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center max-w-xl mx-auto rounded-xl overflow-hidden shadow-2xl">
-            <div className="relative flex-1">
-              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
-              <input
-                className="w-full pl-11 pr-4 py-4 text-gray-800 text-base outline-none bg-white"
-                placeholder="Job title, keyword..."
-                type="text"
-              />
-            </div>
-            <button className="py-4 px-8 bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold text-base transition-colors">
-              Search Jobs
-            </button>
-          </div>
-          <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {["Remote", "Full-Time", "Internship", "Hybrid", "Part-Time"].map((tag) => (
-              <span
-                key={tag}
-                className="px-4 py-1.5 bg-white/10 hover:bg-white/20 text-white text-sm rounded-full cursor-pointer transition-colors border border-white/20"
-              >
-                {tag}
+        <div className="relative w-11/12 md:w-4/5 mx-auto py-16 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left - Text content */}
+            <div className="text-center lg:text-left">
+              <span className="inline-block bg-amber-400 text-amber-900 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+                #1 Job Platform in Bangladesh
               </span>
-            ))}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-5">
+                Find Your <span className="text-amber-400">Dream Job</span>{" "}Today
+              </h1>
+              <p className="text-gray-300 text-base md:text-lg mb-10 max-w-lg mx-auto lg:mx-0">
+                Your path to professional success begins here. Connect with top
+                companies, explore thousands of opportunities, and land the role
+                that matches your ambitions.
+              </p>
+              <div className="flex flex-col sm:flex-row max-w-xl mx-auto lg:mx-0 rounded-xl overflow-hidden shadow-2xl">
+                <div className="relative flex-1">
+                  <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg" />
+                  <input
+                    className="w-full pl-11 pr-4 py-4 text-gray-800 text-base outline-none bg-white"
+                    placeholder="Job title, keyword..."
+                    type="text"
+                  />
+                </div>
+                <button className="py-4 px-8 bg-amber-400 hover:bg-amber-500 text-amber-900 font-bold text-base transition-colors">
+                  Search Jobs
+                </button>
+              </div>
+              <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-2">
+                {["Remote", "Full-Time", "Internship", "Hybrid", "Part-Time"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-1.5 bg-white/10 hover:bg-white/20 text-white text-sm rounded-full cursor-pointer transition-colors border border-white/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Right - Hero image */}
+            <div className="hidden lg:block">
+              <div className="relative">
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+                  className="rounded-2xl shadow-2xl object-cover object-top w-full h-[460px]"
+                  alt="Professional at work"
+                />
+                <div className="absolute -bottom-5 -left-5 bg-white rounded-2xl px-5 py-4 shadow-2xl border border-gray-100 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#331D2C]/10 flex items-center justify-center">
+                    <FiBriefcase className="text-[#331D2C] text-lg" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-extrabold text-gray-900">500+ Active Jobs</p>
+                    <p className="text-xs text-gray-500">New listings daily</p>
+                  </div>
+                </div>
+                <div className="absolute -top-4 -right-4 bg-amber-400 rounded-2xl px-5 py-4 shadow-2xl text-center">
+                  <p className="text-2xl font-extrabold text-amber-900">95%</p>
+                  <p className="text-xs text-amber-800 font-semibold">Success Rate</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

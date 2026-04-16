@@ -12,7 +12,8 @@ const internships = [
     duration: "3 months",
     description:
       "Join our dynamic marketing team and gain practical experience in digital marketing strategies, social media management, and content creation.",
-    gradient: "from-blue-500 to-blue-700",
+    gradient: "from-blue-600 to-blue-800",
+    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "Software Development Intern",
@@ -22,6 +23,7 @@ const internships = [
     description:
       "Work closely with our software development team to contribute to the design and coding of software applications for computer science students.",
     gradient: "from-[#331D2C] to-[#4e2a42]",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "Finance Intern",
@@ -30,7 +32,8 @@ const internships = [
     duration: "4 months",
     description:
       "Gain hands-on experience in financial analysis, budgeting, and reporting. Open to finance or accounting students eager to apply academic knowledge.",
-    gradient: "from-emerald-500 to-emerald-700",
+    gradient: "from-emerald-600 to-emerald-800",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "Graphic Design Intern",
@@ -40,6 +43,7 @@ const internships = [
     description:
       "Work on graphic design projects including branding, marketing materials, and digital content for students passionate about visual communication.",
     gradient: "from-orange-500 to-orange-700",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
   },
   {
     title: "Data Analytics Intern",
@@ -48,7 +52,8 @@ const internships = [
     duration: "3 months",
     description:
       "Analyze datasets, build dashboards, and help drive data-informed decisions for growing business intelligence within a corporate environment.",
-    gradient: "from-purple-500 to-purple-700",
+    gradient: "from-purple-600 to-purple-800",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
   },
 ];
 
@@ -78,9 +83,17 @@ const Internship = () => {
         {internships.map((intern) => (
           <SwiperSlide key={intern.title}>
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full">
-              <div className={`bg-gradient-to-br ${intern.gradient} p-6`}>
-                <h3 className="text-lg font-bold text-white">{intern.title}</h3>
-                <p className="text-white/80 text-sm mt-1">{intern.company}</p>
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={intern.image}
+                  alt={intern.title}
+                  className="w-full h-full object-cover object-top"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-br ${intern.gradient} opacity-75`} />
+                <div className="absolute inset-0 p-5 flex flex-col justify-end">
+                  <h3 className="text-base font-bold text-white leading-snug">{intern.title}</h3>
+                  <p className="text-white/80 text-xs mt-1">{intern.company}</p>
+                </div>
               </div>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">

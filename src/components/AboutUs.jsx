@@ -12,28 +12,38 @@ const AboutUs = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {/* Left - Dark brand panel */}
         <div
-          className="p-10 md:p-14"
-          style={{ background: "linear-gradient(135deg, #331D2C 0%, #4e2a42 100%)" }}
+          className="relative p-10 md:p-14 overflow-hidden"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
         >
-          <span className="text-amber-400 text-sm font-bold uppercase tracking-widest">
-            Who We Are
-          </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3 mb-5 leading-tight">
-            Connecting Talent with Opportunity
-          </h2>
-          <p className="text-gray-300 text-base leading-relaxed mb-8">
-            iApplyNow is not just a job platform — it is a dynamic community
-            where your career aspirations meet endless possibilities. Founded on
-            the principle that every individual deserves a fulfilling and
-            rewarding career.
-          </p>
-          <div className="grid grid-cols-3 gap-4">
-            {aboutStats.map((stat) => (
-              <div key={stat.label} className="text-center bg-white/10 rounded-xl py-4">
-                <p className="text-2xl font-extrabold text-amber-400">{stat.count}</p>
-                <p className="text-gray-300 text-xs mt-1">{stat.label}</p>
-              </div>
-            ))}
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(135deg, rgba(51,29,44,0.93) 0%, rgba(78,42,66,0.88) 100%)" }}
+          />
+          <div className="relative z-10">
+            <span className="text-amber-400 text-sm font-bold uppercase tracking-widest">
+              Who We Are
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3 mb-5 leading-tight">
+              Connecting Talent with Opportunity
+            </h2>
+            <p className="text-gray-300 text-base leading-relaxed mb-8">
+              iApplyNow is not just a job platform — it is a dynamic community
+              where your career aspirations meet endless possibilities. Founded on
+              the principle that every individual deserves a fulfilling and
+              rewarding career.
+            </p>
+            <div className="grid grid-cols-3 gap-4">
+              {aboutStats.map((stat) => (
+                <div key={stat.label} className="text-center bg-white/10 rounded-xl py-4">
+                  <p className="text-2xl font-extrabold text-amber-400">{stat.count}</p>
+                  <p className="text-gray-300 text-xs mt-1">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

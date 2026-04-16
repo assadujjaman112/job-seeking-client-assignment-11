@@ -10,19 +10,25 @@ const categoryColors = {
 };
 
 const JobDetails = ({ job }) => {
-  const { _id, poster, title, date, deadline, salary, number, category } = job;
+  const { _id, poster, title, date, deadline, salary, number, photo, category } = job;
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
-      <div className="p-6 flex-1">
-        <div className="flex items-start justify-between mb-4">
-          <div className="w-12 h-12 rounded-xl bg-[#331D2C]/10 flex items-center justify-center">
-            <FiBriefcase className="text-[#331D2C] text-xl" />
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden">
+      {/* Photo header */}
+      <div className="relative h-52 overflow-hidden bg-[#331D2C]/5">
+        {photo ? (
+          <img src={photo} alt={title} className="w-full h-full object-cover object-top" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <FiBriefcase className="text-[#331D2C]/20 text-5xl" />
           </div>
-          <span className={`text-xs font-semibold px-3 py-1 rounded-full ${categoryColors[category] || "bg-gray-100 text-gray-600"}`}>
-            {category}
-          </span>
-        </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        <span className={`absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-full ${categoryColors[category] || "bg-gray-100 text-gray-600"}`}>
+          {category}
+        </span>
+      </div>
+      <div className="p-6 flex-1">
         <h3 className="text-lg font-bold text-gray-900 mb-1 leading-tight">{title}</h3>
         <p className="text-sm text-gray-500 mb-4">{poster}</p>
         <div className="space-y-2.5">

@@ -4,7 +4,8 @@ const tips = [
   {
     icon: FiFileText,
     title: "Crafting an Impressive Resume",
-    headerColor: "bg-blue-600",
+    overlay: "from-blue-700 to-blue-900",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=600&q=80",
     items: [
       "Ensure your resume is well-organized, highlighting your skills and experiences.",
       "Tailor your resume for each job application by emphasizing relevant achievements.",
@@ -15,7 +16,8 @@ const tips = [
   {
     icon: FiLinkedin,
     title: "Building an Effective LinkedIn Profile",
-    headerColor: "bg-[#331D2C]",
+    overlay: "from-[#1a0e18] to-[#4e2a42]",
+    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80",
     items: [
       "Create a comprehensive LinkedIn profile with a professional photo.",
       "Highlight your key skills, experiences, and accomplishments in the summary.",
@@ -26,7 +28,8 @@ const tips = [
   {
     icon: FiMessageSquare,
     title: "Preparing for Interviews",
-    headerColor: "bg-amber-500",
+    overlay: "from-amber-700 to-orange-800",
+    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80",
     items: [
       "Research the company thoroughly before the interview.",
       "Practice common interview questions to build confidence.",
@@ -49,14 +52,18 @@ const JobSearchTips = () => {
         <div className="w-16 h-1 bg-amber-400 mx-auto mt-4 rounded-full"></div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {tips.map(({ icon: Icon, title, headerColor, items }) => (
+        {tips.map(({ icon: Icon, title, image, overlay, items }) => (
           <div
             key={title}
             className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
           >
-            <div className={`${headerColor} p-6 text-white`}>
-              <Icon className="text-3xl mb-3" />
-              <h3 className="text-lg font-bold leading-snug">{title}</h3>
+            <div className="relative h-56 overflow-hidden rounded-t-2xl">
+              <img src={image} alt={title} className="w-full h-full object-cover object-top" />
+              <div className={`absolute inset-0 bg-gradient-to-br ${overlay} opacity-80`} />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
+                <Icon className="text-3xl mb-2 drop-shadow" />
+                <h3 className="text-lg font-bold leading-snug drop-shadow">{title}</h3>
+              </div>
             </div>
             <ol className="p-6 space-y-3">
               {items.map((item, i) => (
