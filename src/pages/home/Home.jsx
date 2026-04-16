@@ -7,6 +7,9 @@ import AboutUs from "../../components/AboutUs";
 import JobSearchTips from "../../components/JobSearchTips";
 import Internship from "../../components/Internship";
 import TopCompanies from "../../components/TopCompanies";
+import HowItWorks from "../../components/HowItWorks";
+import JobCategories from "../../components/JobCategories";
+import NewsletterBanner from "../../components/NewsletterBanner";
 import { useEffect, useState } from "react";
 import useAllJobs from "../../hooks/useAllJobs";
 import { FiSearch, FiBriefcase, FiUsers, FiAward, FiTrendingUp } from "react-icons/fi";
@@ -19,7 +22,7 @@ const heroStats = [
 ];
 
 const Home = () => {
-  const allJobs = useAllJobs();
+  const { allJobs, loading } = useAllJobs();
 
   const [jobs, setJobs] = useState([]);
 
@@ -56,6 +59,21 @@ const Home = () => {
       ))}
     </div>
   );
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-gray-200 border-t-[#331D2C] rounded-full animate-spin mx-auto mb-6" />
+          <h2 className="text-2xl font-extrabold tracking-tight">
+            <span className="text-amber-500">i</span>
+            <span className="text-[#331D2C]">ApplyNow</span>
+          </h2>
+          <p className="text-gray-400 text-sm mt-2">Finding opportunities for you...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -163,6 +181,8 @@ const Home = () => {
       {/* Main content */}
       <div className="w-11/12 md:w-4/5 mx-auto py-14 md:py-20 space-y-20">
 
+        <section><HowItWorks /></section>
+
         {/* Jobs Tabs */}
         <section>
           <div className="text-center mb-8">
@@ -188,10 +208,12 @@ const Home = () => {
           </Tabs>
         </section>
 
+        <section><JobCategories /></section>
         <section><JobSearchTips /></section>
         <section><Internship /></section>
         <section><TopCompanies /></section>
         <section><AboutUs /></section>
+        <section><NewsletterBanner /></section>
         <section><Review /></section>
       </div>
     </div>

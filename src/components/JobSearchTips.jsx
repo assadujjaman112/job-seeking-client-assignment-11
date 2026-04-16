@@ -4,7 +4,7 @@ const tips = [
   {
     icon: FiFileText,
     title: "Crafting an Impressive Resume",
-    overlay: "from-blue-700 to-blue-900",
+    overlay: "from-[#331D2C] to-[#4e2a42]",
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=600&q=80",
     items: [
       "Ensure your resume is well-organized, highlighting your skills and experiences.",
@@ -16,7 +16,7 @@ const tips = [
   {
     icon: FiLinkedin,
     title: "Building an Effective LinkedIn Profile",
-    overlay: "from-[#1a0e18] to-[#4e2a42]",
+    overlay: "from-amber-600 to-amber-800",
     image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80",
     items: [
       "Create a comprehensive LinkedIn profile with a professional photo.",
@@ -28,7 +28,7 @@ const tips = [
   {
     icon: FiMessageSquare,
     title: "Preparing for Interviews",
-    overlay: "from-amber-700 to-orange-800",
+    overlay: "from-[#1a0e18] to-[#331D2C]",
     image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80",
     items: [
       "Research the company thoroughly before the interview.",

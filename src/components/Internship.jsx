@@ -12,7 +12,7 @@ const internships = [
     duration: "3 months",
     description:
       "Join our dynamic marketing team and gain practical experience in digital marketing strategies, social media management, and content creation.",
-    gradient: "from-blue-600 to-blue-800",
+    gradient: "from-[#331D2C] to-[#4e2a42]",
     image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80",
   },
   {
@@ -22,7 +22,7 @@ const internships = [
     duration: "2 months",
     description:
       "Work closely with our software development team to contribute to the design and coding of software applications for computer science students.",
-    gradient: "from-[#331D2C] to-[#4e2a42]",
+    gradient: "from-amber-500 to-amber-700",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
   },
   {
@@ -32,7 +32,7 @@ const internships = [
     duration: "4 months",
     description:
       "Gain hands-on experience in financial analysis, budgeting, and reporting. Open to finance or accounting students eager to apply academic knowledge.",
-    gradient: "from-emerald-600 to-emerald-800",
+    gradient: "from-[#4e2a42] to-[#1a0e18]",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
   },
   {
@@ -42,7 +42,7 @@ const internships = [
     duration: "6 months",
     description:
       "Work on graphic design projects including branding, marketing materials, and digital content for students passionate about visual communication.",
-    gradient: "from-orange-500 to-orange-700",
+    gradient: "from-amber-600 to-[#331D2C]",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
   },
   {
@@ -52,7 +52,7 @@ const internships = [
     duration: "3 months",
     description:
       "Analyze datasets, build dashboards, and help drive data-informed decisions for growing business intelligence within a corporate environment.",
-    gradient: "from-purple-600 to-purple-800",
+    gradient: "from-[#1a0e18] to-[#4e2a42]",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
   },
 ];
