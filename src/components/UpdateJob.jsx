@@ -56,7 +56,7 @@ const UpdateJob = () => {
     };
     console.log(updatedJob);
 
-    fetch(`https://job-seeking-server-pi.vercel.app/jobs/${_id}`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

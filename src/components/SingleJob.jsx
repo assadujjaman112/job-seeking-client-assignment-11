@@ -61,7 +61,7 @@ const SingleJob = () => {
       });
       return;
     }
-    fetch("https://job-seeking-server-pi.vercel.app/appliedJobs", {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/appliedJobs`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

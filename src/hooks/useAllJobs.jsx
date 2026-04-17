@@ -4,7 +4,7 @@ const useAllJobs = () => {
   const [allJobs, setAllJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("https://job-seeking-server-pi.vercel.app/jobs")
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs`)
       .then((res) => res.json())
       .then((data) => {
         setAllJobs(data);

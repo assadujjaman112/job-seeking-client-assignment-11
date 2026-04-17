@@ -21,7 +21,7 @@ const MyJobs = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://job-seeking-server-pi.vercel.app/job/${id}`,{
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/job/${id}`,{
           method : "DELETE"
         })
         .then(res => res.json())
