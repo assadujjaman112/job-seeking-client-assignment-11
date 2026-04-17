@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { API_BASE_URL } from "../config/api";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from "../providers/AuthProvider";
@@ -56,7 +57,7 @@ const UpdateJob = () => {
     };
     console.log(updatedJob);
 
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs/${_id}`, {
+    fetch(`${API_BASE_URL}/jobs/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

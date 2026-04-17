@@ -1,42 +1,27 @@
-import { useState } from "react";
-
 const companies = [
-  { name: "Apple Inc.", industry: "Technology", domain: "apple.com", fallbackStyle: "bg-gray-900 text-white" },
-  { name: "Microsoft", industry: "Technology", domain: "microsoft.com", fallbackStyle: "bg-blue-600 text-white" },
-  { name: "JPMorgan Chase", industry: "Finance", domain: "jpmorganchase.com", fallbackStyle: "bg-blue-900 text-white" },
-  { name: "Bank of America", industry: "Finance", domain: "bankofamerica.com", fallbackStyle: "bg-red-700 text-white" },
-  { name: "Toyota Motor", industry: "Automotive", domain: "toyota.com", fallbackStyle: "bg-red-600 text-white" },
-  { name: "General Motors", industry: "Automotive", domain: "gm.com", fallbackStyle: "bg-blue-700 text-white" },
-  { name: "Novartis", industry: "Healthcare", domain: "novartis.com", fallbackStyle: "bg-emerald-600 text-white" },
-  { name: "Amazon", industry: "Technology", domain: "amazon.com", fallbackStyle: "bg-amber-500 text-white" },
+  { name: "Apple Inc.",     industry: "Technology", tileStyle: "bg-stone-800 text-white" },
+  { name: "Microsoft",     industry: "Technology", tileStyle: "bg-[#331D2C] text-white" },
+  { name: "JPMorgan Chase",industry: "Finance",    tileStyle: "bg-[#4e2a42] text-white" },
+  { name: "Bank of America",industry: "Finance",   tileStyle: "bg-rose-700 text-white" },
+  { name: "Toyota Motor",  industry: "Automotive", tileStyle: "bg-rose-600 text-white" },
+  { name: "General Motors",industry: "Automotive", tileStyle: "bg-[#331D2C] text-white" },
+  { name: "Novartis",      industry: "Healthcare", tileStyle: "bg-amber-600 text-white" },
+  { name: "Amazon",        industry: "Technology", tileStyle: "bg-amber-500 text-white" },
 ];
 
 const industryBadge = {
-  Technology: "bg-blue-100 text-blue-700",
-  Finance: "bg-purple-100 text-purple-700",
+  Technology: "bg-amber-100 text-amber-800",
+  Finance:    "bg-[#331D2C]/10 text-[#331D2C]",
   Automotive: "bg-orange-100 text-orange-700",
-  Healthcare: "bg-emerald-100 text-emerald-700",
+  Healthcare: "bg-rose-100 text-rose-700",
 };
 
-const CompanyLogo = ({ domain, name, fallbackStyle }) => {
-  const [error, setError] = useState(false);
+const CompanyLogo = ({ name, tileStyle }) => {
   const initials = name.split(" ").map((w) => w[0]).slice(0, 2).join("");
-
-  if (error) {
-    return (
-      <div className={`w-full h-full rounded-lg flex items-center justify-center text-base font-extrabold ${fallbackStyle}`}>
-        {initials}
-      </div>
-    );
-  }
-
   return (
-    <img
-      src={`https://logo.clearbit.com/${domain}`}
-      alt={name}
-      className="w-full h-full object-contain"
-      onError={() => setError(true)}
-    />
+    <div className={`w-full h-full rounded-lg flex items-center justify-center text-base font-extrabold ${tileStyle}`}>
+      {initials}
+    </div>
   );
 };
 
@@ -59,11 +44,7 @@ const TopCompanies = () => {
             className="bg-white rounded-2xl border border-gray-100 p-6 flex flex-col items-center text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer"
           >
             <div className="w-16 h-16 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center mb-3 p-2 overflow-hidden">
-              <CompanyLogo
-                domain={company.domain}
-                name={company.name}
-                fallbackStyle={company.fallbackStyle}
-              />
+              <CompanyLogo name={company.name} tileStyle={company.tileStyle} />
             </div>
             <h3 className="font-bold text-gray-800 text-sm mb-2">{company.name}</h3>
             <span

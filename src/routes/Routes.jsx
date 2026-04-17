@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import { API_BASE_URL } from "../config/api";
 import MainLayout from "../layout/MainLayout";
 import ErrorPage from "../components/ErrorPage";
 import Home from "../pages/home/Home";
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       {
         path: "/allJobs",
         element: <AllJobs />,
-        loader: () => fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs`),
+        loader: () => fetch(`${API_BASE_URL}/jobs`),
       },
       {
         path: "/singleJob/:id",
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs/${params.id}`),
+          fetch(`${API_BASE_URL}/jobs/${params.id}`),
       },
       {
         path: "/addAJob",
@@ -57,7 +58,7 @@ const router = createBrowserRouter([
             <MyJobs />
           </PrivateRoute>
         ),
-        loader: () => fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs`),
+        loader: () => fetch(`${API_BASE_URL}/jobs`),
       },
       {
         path: "/updateJob/:id",
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs/${params.id}`),
+          fetch(`${API_BASE_URL}/jobs/${params.id}`),
       },
       {
         path: "/appliedJobs",
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () =>
-          fetch(`${import.meta.env.VITE_API_BASE_URL}/appliedJobs`),
+          fetch(`${API_BASE_URL}/appliedJobs`),
       },
       {
         path: "/signUp",

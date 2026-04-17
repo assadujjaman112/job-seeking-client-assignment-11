@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { API_BASE_URL } from "../config/api";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
@@ -21,7 +22,7 @@ const MyJobs = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`${import.meta.env.VITE_API_BASE_URL}/job/${id}`,{
+        fetch(`${API_BASE_URL}/job/${id}`,{
           method : "DELETE"
         })
         .then(res => res.json())

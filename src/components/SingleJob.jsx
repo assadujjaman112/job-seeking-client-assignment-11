@@ -1,4 +1,5 @@
 import { useContext} from "react";
+import { API_BASE_URL } from "../config/api";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router-dom";
@@ -61,7 +62,7 @@ const SingleJob = () => {
       });
       return;
     }
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/appliedJobs`, {
+    fetch(`${API_BASE_URL}/appliedJobs`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

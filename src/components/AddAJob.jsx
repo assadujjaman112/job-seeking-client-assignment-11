@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { API_BASE_URL } from "../config/api";
 import { AuthContext } from "../providers/AuthProvider";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -42,7 +43,7 @@ const AddAJob = () => {
     };
     console.log(newJob);
 
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs`, {
+    fetch(`${API_BASE_URL}/jobs`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -15,7 +15,14 @@ import StatsCounter from "../../components/StatsCounter";
 import PartnerLogos from "../../components/PartnerLogos";
 import { useEffect, useState, useRef } from "react";
 import useAllJobs from "../../hooks/useAllJobs";
-import { FiSearch, FiBriefcase, FiUsers, FiAward, FiTrendingUp, FiX } from "react-icons/fi";
+import {
+  FiSearch,
+  FiBriefcase,
+  FiUsers,
+  FiAward,
+  FiTrendingUp,
+  FiX,
+} from "react-icons/fi";
 
 const heroStats = [
   { icon: FiBriefcase, count: "500+", label: "Active Jobs" },
@@ -25,19 +32,60 @@ const heroStats = [
 ];
 
 const categoryKeywords = {
-  "Engineering & IT": ["engineer", "developer", "software", "web", "tech", "data", "system", "program", "network"],
-  "Marketing": ["marketing", "seo", "content", "brand", "social media", "digital"],
-  "Finance": ["finance", "account", "financial", "banking", "analyst", "audit", "invest"],
-  "Design & Creative": ["design", "creative", "ui", "ux", "graphic", "visual", "art"],
-  "Healthcare": ["health", "medical", "nurse", "doctor", "pharma", "clinic"],
-  "Education": ["teach", "tutor", "education", "trainer", "instructor", "lecturer"],
-  "Sales": ["sales", "business development", "account executive", "revenue"],
+  "Engineering & IT": [
+    "engineer",
+    "developer",
+    "software",
+    "web",
+    "tech",
+    "data",
+    "system",
+    "program",
+    "network",
+  ],
+  Marketing: [
+    "marketing",
+    "seo",
+    "content",
+    "brand",
+    "social media",
+    "digital",
+  ],
+  Finance: [
+    "finance",
+    "account",
+    "financial",
+    "banking",
+    "analyst",
+    "audit",
+    "invest",
+  ],
+  "Design & Creative": [
+    "design",
+    "creative",
+    "ui",
+    "ux",
+    "graphic",
+    "visual",
+    "art",
+  ],
+  Healthcare: ["health", "medical", "nurse", "doctor", "pharma", "clinic"],
+  Education: [
+    "teach",
+    "tutor",
+    "education",
+    "trainer",
+    "instructor",
+    "lecturer",
+  ],
+  Sales: ["sales", "business development", "account executive", "revenue"],
   "Customer Support": ["support", "customer service", "help desk", "service"],
 };
 
 const Home = () => {
   const { allJobs, loading } = useAllJobs();
   const jobsSectionRef = useRef(null);
+  console.log("allJobs", allJobs);
 
   const [jobs, setJobs] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
@@ -71,11 +119,14 @@ const Home = () => {
   const handleCategorySelect = (category) => {
     const keywords = categoryKeywords[category];
     const filtered = allJobs?.filter((job) =>
-      keywords.some((kw) => job.title.toLowerCase().includes(kw))
+      keywords.some((kw) => job.title.toLowerCase().includes(kw)),
     );
     setJobs(filtered);
     setActiveCategory(category);
-    jobsSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    jobsSectionRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   const handleClearCategory = () => {
@@ -83,24 +134,27 @@ const Home = () => {
     setActiveCategory(null);
   };
 
-  const jobGrid = jobs?.length === 0 ? (
-    <div className="text-center py-16">
-      <FiBriefcase className="text-gray-300 text-5xl mx-auto mb-4" />
-      <p className="text-gray-500 font-medium">No jobs found in this category.</p>
-      <button
-        onClick={handleClearCategory}
-        className="mt-4 text-sm text-[#331D2C] font-semibold underline"
-      >
-        Clear filter
-      </button>
-    </div>
-  ) : (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-      {jobs?.map((job) => (
-        <JobDetails key={job._id} job={job} />
-      ))}
-    </div>
-  );
+  const jobGrid =
+    jobs?.length === 0 ? (
+      <div className="text-center py-16">
+        <FiBriefcase className="text-gray-300 text-5xl mx-auto mb-4" />
+        <p className="text-gray-500 font-medium">
+          No jobs found in this category.
+        </p>
+        <button
+          onClick={handleClearCategory}
+          className="mt-4 text-sm text-[#331D2C] font-semibold underline"
+        >
+          Clear filter
+        </button>
+      </div>
+    ) : (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        {jobs?.map((job) => (
+          <JobDetails key={job._id} job={job} />
+        ))}
+      </div>
+    );
 
   if (loading) {
     return (
@@ -111,7 +165,9 @@ const Home = () => {
             <span className="text-amber-500">i</span>
             <span className="text-[#331D2C]">ApplyNow</span>
           </h2>
-          <p className="text-gray-400 text-sm mt-2">Finding opportunities for you...</p>
+          <p className="text-gray-400 text-sm mt-2">
+            Finding opportunities for you...
+          </p>
         </div>
       </div>
     );
@@ -126,15 +182,24 @@ const Home = () => {
       {/* Hero Section */}
       <div
         className="relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #331D2C 0%, #4e2a42 55%, #1a0e18 100%)" }}
+        style={{
+          background:
+            "linear-gradient(135deg, #331D2C 0%, #4e2a42 55%, #1a0e18 100%)",
+        }}
       >
         <div
           className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"
-          style={{ background: "radial-gradient(circle, #f59e0b, transparent)", transform: "translate(30%, -30%)" }}
+          style={{
+            background: "radial-gradient(circle, #f59e0b, transparent)",
+            transform: "translate(30%, -30%)",
+          }}
         />
         <div
           className="absolute bottom-0 left-0 w-72 h-72 rounded-full opacity-10 pointer-events-none"
-          style={{ background: "radial-gradient(circle, #a78bfa, transparent)", transform: "translate(-30%, 30%)" }}
+          style={{
+            background: "radial-gradient(circle, #a78bfa, transparent)",
+            transform: "translate(-30%, 30%)",
+          }}
         />
         <div className="relative w-11/12 md:w-4/5 mx-auto py-16 lg:py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -144,7 +209,8 @@ const Home = () => {
                 #1 Job Platform in Bangladesh
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-5">
-                Find Your <span className="text-amber-400">Dream Job</span>{" "}Today
+                Find Your <span className="text-amber-400">Dream Job</span>{" "}
+                Today
               </h1>
               <p className="text-gray-300 text-base md:text-lg mb-10 max-w-lg mx-auto lg:mx-0">
                 Your path to professional success begins here. Connect with top
@@ -165,7 +231,13 @@ const Home = () => {
                 </button>
               </div>
               <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-2">
-                {["Remote", "Full-Time", "Internship", "Hybrid", "Part-Time"].map((tag) => (
+                {[
+                  "Remote",
+                  "Full-Time",
+                  "Internship",
+                  "Hybrid",
+                  "Part-Time",
+                ].map((tag) => (
                   <span
                     key={tag}
                     className="px-4 py-1.5 bg-white/10 hover:bg-white/20 text-white text-sm rounded-full cursor-pointer transition-colors border border-white/20"
@@ -189,13 +261,17 @@ const Home = () => {
                     <FiBriefcase className="text-[#331D2C] text-lg" />
                   </div>
                   <div>
-                    <p className="text-sm font-extrabold text-gray-900">500+ Active Jobs</p>
+                    <p className="text-sm font-extrabold text-gray-900">
+                      500+ Active Jobs
+                    </p>
                     <p className="text-xs text-gray-500">New listings daily</p>
                   </div>
                 </div>
                 <div className="absolute -top-4 -right-4 bg-amber-400 rounded-2xl px-5 py-4 shadow-2xl text-center">
                   <p className="text-2xl font-extrabold text-amber-900">95%</p>
-                  <p className="text-xs text-amber-800 font-semibold">Success Rate</p>
+                  <p className="text-xs text-amber-800 font-semibold">
+                    Success Rate
+                  </p>
                 </div>
               </div>
             </div>
@@ -206,7 +282,10 @@ const Home = () => {
         <div className="relative bg-white/10 border-t border-white/10">
           <div className="w-11/12 md:w-4/5 mx-auto py-6 grid grid-cols-2 md:grid-cols-4 gap-6">
             {heroStats.map(({ icon: Icon, count, label }) => (
-              <div key={label} className="flex items-center gap-3 justify-center">
+              <div
+                key={label}
+                className="flex items-center gap-3 justify-center"
+              >
                 <div className="text-amber-400 text-2xl">
                   <Icon />
                 </div>
@@ -222,9 +301,12 @@ const Home = () => {
 
       {/* Main content */}
       <div className="w-11/12 md:w-4/5 mx-auto py-14 md:py-20 space-y-20">
-
-        <section><HowItWorks /></section>
-        <section><PartnerLogos /></section>
+        <section>
+          <HowItWorks />
+        </section>
+        <section>
+          <PartnerLogos />
+        </section>
 
         {/* Jobs Tabs */}
         <section ref={jobsSectionRef}>
@@ -237,23 +319,38 @@ const Home = () => {
                 <span className="text-sm text-gray-500">Showing:</span>
                 <span className="inline-flex items-center gap-1.5 bg-[#331D2C] text-white text-sm px-3 py-1 rounded-full font-semibold">
                   {activeCategory}
-                  <button onClick={handleClearCategory} className="text-white/70 hover:text-white transition-colors">
+                  <button
+                    onClick={handleClearCategory}
+                    className="text-white/70 hover:text-white transition-colors"
+                  >
                     <FiX className="text-xs" />
                   </button>
                 </span>
               </div>
             ) : (
-              <p className="text-gray-500 mt-2">Explore opportunities across all categories</p>
+              <p className="text-gray-500 mt-2">
+                Explore opportunities across all categories
+              </p>
             )}
             <div className="w-16 h-1 bg-amber-400 mx-auto mt-4 rounded-full"></div>
           </div>
           <Tabs>
             <TabList>
-              <Tab><button onClick={handleAllJobs}>All Jobs</button></Tab>
-              <Tab><button onClick={handleOnSite}>On Site</button></Tab>
-              <Tab><button onClick={handleRemoteJobs}>Remote</button></Tab>
-              <Tab><button onClick={handleHybridJobs}>Hybrid</button></Tab>
-              <Tab><button onClick={handlePartTimeJobs}>Part Time</button></Tab>
+              <Tab>
+                <button onClick={handleAllJobs}>All Jobs</button>
+              </Tab>
+              <Tab>
+                <button onClick={handleOnSite}>On Site</button>
+              </Tab>
+              <Tab>
+                <button onClick={handleRemoteJobs}>Remote</button>
+              </Tab>
+              <Tab>
+                <button onClick={handleHybridJobs}>Hybrid</button>
+              </Tab>
+              <Tab>
+                <button onClick={handlePartTimeJobs}>Part Time</button>
+              </Tab>
             </TabList>
             <TabPanel>{jobGrid}</TabPanel>
             <TabPanel>{jobGrid}</TabPanel>
@@ -263,15 +360,36 @@ const Home = () => {
           </Tabs>
         </section>
 
-        <section><JobCategories activeCategory={activeCategory} onSelect={handleCategorySelect} /></section>
-        <section><JobSearchTips /></section>
-        <section><Internship /></section>
-        <section><TopCompanies /></section>
-        <section><StatsCounter /></section>
-        <section><AboutUs /></section>
-        <section><FAQ /></section>
-        <section><NewsletterBanner /></section>
-        <section><Review /></section>
+        <section>
+          <JobCategories
+            activeCategory={activeCategory}
+            onSelect={handleCategorySelect}
+          />
+        </section>
+        <section>
+          <JobSearchTips />
+        </section>
+        <section>
+          <Internship />
+        </section>
+        <section>
+          <TopCompanies />
+        </section>
+        <section>
+          <StatsCounter />
+        </section>
+        <section>
+          <AboutUs />
+        </section>
+        <section>
+          <FAQ />
+        </section>
+        <section>
+          <NewsletterBanner />
+        </section>
+        <section>
+          <Review />
+        </section>
       </div>
     </div>
   );
