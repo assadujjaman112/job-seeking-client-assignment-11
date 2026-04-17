@@ -11,6 +11,8 @@ import HowItWorks from "../../components/HowItWorks";
 import JobCategories from "../../components/JobCategories";
 import NewsletterBanner from "../../components/NewsletterBanner";
 import FAQ from "../../components/FAQ";
+import StatsCounter from "../../components/StatsCounter";
+import PartnerLogos from "../../components/PartnerLogos";
 import { useEffect, useState, useRef } from "react";
 import useAllJobs from "../../hooks/useAllJobs";
 import { FiSearch, FiBriefcase, FiUsers, FiAward, FiTrendingUp, FiX } from "react-icons/fi";
@@ -222,6 +224,7 @@ const Home = () => {
       <div className="w-11/12 md:w-4/5 mx-auto py-14 md:py-20 space-y-20">
 
         <section><HowItWorks /></section>
+        <section><PartnerLogos /></section>
 
         {/* Jobs Tabs */}
         <section ref={jobsSectionRef}>
@@ -264,6 +267,7 @@ const Home = () => {
         <section><JobSearchTips /></section>
         <section><Internship /></section>
         <section><TopCompanies /></section>
+        <section><StatsCounter /></section>
         <section><AboutUs /></section>
         <section><FAQ /></section>
         <section><NewsletterBanner /></section>

@@ -7,6 +7,10 @@ const steps = [
     title: "Create Your Profile",
     description:
       "Sign up and build your professional profile. Upload your resume and highlight your key skills to stand out.",
+    cardBg: "bg-amber-50 border-amber-200",
+    iconBg: "bg-amber-500",
+    numberBg: "bg-[#331D2C] text-white",
+    arrowColor: "text-amber-500",
   },
   {
     number: "02",
@@ -14,6 +18,10 @@ const steps = [
     title: "Browse & Apply",
     description:
       "Explore thousands of listings filtered by role, location, and category. Apply to the best matches in one click.",
+    cardBg: "bg-[#331D2C]/5 border-[#331D2C]/20",
+    iconBg: "bg-[#331D2C]",
+    numberBg: "bg-amber-400 text-amber-900",
+    arrowColor: "text-[#331D2C]",
   },
   {
     number: "03",
@@ -21,6 +29,10 @@ const steps = [
     title: "Get Hired",
     description:
       "Connect with top employers, ace your interviews, and land the role that aligns with your ambitions.",
+    cardBg: "bg-rose-50 border-rose-200",
+    iconBg: "bg-[#4e2a42]",
+    numberBg: "bg-amber-500 text-white",
+    arrowColor: "text-amber-500",
   },
 ];
 
@@ -41,12 +53,12 @@ const HowItWorks = () => {
         {steps.map((step, index) => (
           <div key={step.number} className="flex md:flex-row items-center flex-1 gap-4">
             {/* Card */}
-            <div className="flex-1 bg-white rounded-2xl border border-gray-100 shadow-sm p-8 flex flex-col items-center text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+            <div className={`flex-1 rounded-2xl border-2 shadow-sm p-8 flex flex-col items-center text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300 ${step.cardBg}`}>
               <div className="relative mb-5">
-                <div className="w-16 h-16 rounded-2xl bg-[#331D2C] flex items-center justify-center shadow-lg">
+                <div className={`w-16 h-16 rounded-2xl ${step.iconBg} flex items-center justify-center shadow-lg`}>
                   <step.icon className="text-white text-2xl" />
                 </div>
-                <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-amber-400 text-amber-900 text-xs font-extrabold flex items-center justify-center shadow">
+                <span className={`absolute -top-2 -right-2 w-6 h-6 rounded-full text-xs font-extrabold flex items-center justify-center shadow ${step.numberBg}`}>
                   {step.number}
                 </span>
               </div>
@@ -57,7 +69,7 @@ const HowItWorks = () => {
             {/* Arrow between cards (desktop only) */}
             {index < 2 && (
               <div className="hidden md:flex items-center shrink-0">
-                <FiArrowRight className="text-amber-400 text-2xl" />
+                <FiArrowRight className={`${step.arrowColor} text-2xl`} />
               </div>
             )}
           </div>
