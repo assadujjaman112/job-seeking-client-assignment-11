@@ -1,12 +1,12 @@
-import { Outlet, useNavigation } from "react-router-dom";
+import { Outlet, ScrollRestoration, useNavigation } from "react-router-dom";
 import Footer from "../pages/shared/footer/Footer";
 import NavBar from "../pages/shared/navBar/NavBar";
 
 const MainLayout = () => {
   const navigation = useNavigation();
-  console.log(navigation.state);
   return (
     <div>
+      <ScrollRestoration />
       {navigation.state === "loading" ? (
         "loading"
       ) : (
