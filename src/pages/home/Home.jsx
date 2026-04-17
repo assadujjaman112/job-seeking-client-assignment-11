@@ -10,6 +10,7 @@ import TopCompanies from "../../components/TopCompanies";
 import HowItWorks from "../../components/HowItWorks";
 import JobCategories from "../../components/JobCategories";
 import NewsletterBanner from "../../components/NewsletterBanner";
+import FAQ from "../../components/FAQ";
 import { useEffect, useState, useRef } from "react";
 import useAllJobs from "../../hooks/useAllJobs";
 import { FiSearch, FiBriefcase, FiUsers, FiAward, FiTrendingUp, FiX } from "react-icons/fi";
@@ -264,6 +265,7 @@ const Home = () => {
         <section><Internship /></section>
         <section><TopCompanies /></section>
         <section><AboutUs /></section>
+        <section><FAQ /></section>
         <section><NewsletterBanner /></section>
         <section><Review /></section>
       </div>
