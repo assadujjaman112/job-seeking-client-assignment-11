@@ -11,7 +11,7 @@ const posts = [
       "Learn how access tokens and refresh tokens work together to keep your users securely authenticated without forcing them to log in every few minutes.",
     image:
       "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80",
-    author: "Murad Hossain",
+    author: "Assadujjaman Murad",
     date: "Apr 10, 2025",
     readTime: "5 min read",
     avatar: "M",
@@ -24,7 +24,7 @@ const posts = [
       "Both are powerful Node.js frameworks, but they serve different needs. Here's a practical breakdown to help you choose the right tool for your next project.",
     image:
       "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=800&q=80",
-    author: "Murad Hossain",
+    author: "Assadujjaman Murad",
     date: "Apr 3, 2025",
     readTime: "6 min read",
     avatar: "M",
@@ -37,7 +37,7 @@ const posts = [
       "Picking the wrong database can cost you months of refactoring later. Understand the trade-offs between relational and non-relational databases before you commit.",
     image:
       "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=80",
-    author: "Murad Hossain",
+    author: "Assadujjaman Murad",
     date: "Mar 28, 2025",
     readTime: "7 min read",
     avatar: "M",
@@ -50,7 +50,7 @@ const posts = [
       "That dreaded 'blocked by CORS policy' error in the browser console — here's exactly what it means, why browsers enforce it, and how to resolve it on your server.",
     image:
       "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
-    author: "Murad Hossain",
+    author: "Assadujjaman Murad",
     date: "Mar 20, 2025",
     readTime: "4 min read",
     avatar: "M",
@@ -63,7 +63,7 @@ const posts = [
       "Most CVs never reach a human recruiter. Applicant Tracking Systems filter them out first. Here's how to format and keyword-optimize your CV to pass the initial screen.",
     image:
       "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=800&q=80",
-    author: "Murad Hossain",
+    author: "Assadujjaman Murad",
     date: "Mar 14, 2025",
     readTime: "8 min read",
     avatar: "M",
@@ -76,7 +76,7 @@ const posts = [
       "Technical interviews test more than just coding ability — they assess how you think. These seven strategies will help you stay calm, structured, and impressive under pressure.",
     image:
       "https://images.unsplash.com/photo-1573497491765-dccce02b29df?auto=format&fit=crop&w=800&q=80",
-    author: "Murad Hossain",
+    author: "Assadujjaman Murad",
     date: "Mar 7, 2025",
     readTime: "6 min read",
     avatar: "M",
@@ -89,7 +89,7 @@ const posts = [
       "The flexibility of remote work sounds ideal, but it's not for everyone. Weigh the real pros and cons of both setups before accepting your next offer.",
     image:
       "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=800&q=80",
-    author: "Murad Hossain",
+    author: "Assadujjaman Murad",
     date: "Feb 28, 2025",
     readTime: "5 min read",
     avatar: "M",
