@@ -4,6 +4,7 @@ import MainLayout from "../layout/MainLayout";
 import ErrorPage from "../components/ErrorPage";
 import Home from "../pages/home/Home";
 import Blog from "../pages/blog/Blog";
+import BlogDetails from "../pages/blog/BlogDetails";
 import AllJobs from "../pages/allJobs/AllJobs";
 import PrivateRoute from "./PrivateRoute";
 import SingleJob from "../components/SingleJob";
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/blog/:id",
+        element: <BlogDetails />,
       },
       {
         path: "/allJobs",

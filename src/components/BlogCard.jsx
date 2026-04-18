@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FiClock, FiCalendar, FiArrowRight } from "react-icons/fi";
 
 const categoryStyle = {
@@ -6,7 +7,10 @@ const categoryStyle = {
 };
 
 const BlogCard = ({ post }) => (
-  <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col group hover:shadow-md transition-shadow duration-300">
+  <Link
+    to={`/blog/${post.id}`}
+    className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden flex flex-col group hover:shadow-md transition-shadow duration-300"
+  >
     {/* Thumbnail */}
     <div className="relative overflow-hidden h-48">
       <img
@@ -51,12 +55,12 @@ const BlogCard = ({ post }) => (
             </div>
           </div>
         </div>
-        <button className="flex items-center gap-1 text-[#331D2C] font-semibold text-xs hover:gap-2 transition-all">
+        <span className="flex items-center gap-1 text-[#331D2C] font-semibold text-xs group-hover:gap-2 transition-all">
           Read <FiArrowRight />
-        </button>
+        </span>
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 export default BlogCard;
