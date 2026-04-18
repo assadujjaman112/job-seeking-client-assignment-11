@@ -277,6 +277,83 @@ const SingleJob = () => {
               </div>
             </div>
 
+            {/* Applicant Competition Meter */}
+            {(() => {
+              const count = parseInt(number) || 0;
+              const level =
+                count <= 10
+                  ? { label: "Low Competition", color: "emerald", pct: Math.max(8, (count / 10) * 33) }
+                  : count <= 30
+                  ? { label: "Moderate Competition", color: "amber", pct: 33 + ((count - 10) / 20) * 34 }
+                  : { label: "High Competition", color: "red", pct: Math.min(100, 67 + ((count - 30) / 30) * 33) };
+
+              const barColors = {
+                emerald: "from-emerald-400 to-emerald-500",
+                amber: "from-amber-400 to-amber-500",
+                red: "from-red-400 to-red-500",
+              };
+              const badgeColors = {
+                emerald: "bg-emerald-50 text-emerald-700 border-emerald-200",
+                amber: "bg-amber-50 text-amber-700 border-amber-200",
+                red: "bg-red-50 text-red-600 border-red-200",
+              };
+              const dotColors = {
+                emerald: "bg-emerald-400",
+                amber: "bg-amber-400",
+                red: "bg-red-400",
+              };
+
+              return (
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                  <div className={`h-1.5 bg-gradient-to-r ${barColors[level.color]} `} />
+                  <div className="p-6 md:p-7">
+                    <div className="flex items-center gap-2 mb-5">
+                      <span className={`w-1 h-6 rounded-full bg-${level.color}-400 flex-shrink-0`} style={{ backgroundColor: level.color === "emerald" ? "#34d399" : level.color === "amber" ? "#fbbf24" : "#f87171" }} />
+                      <h2 className="text-xl font-extrabold text-gray-900">
+                        Applicant Competition
+                      </h2>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-6">
+                      {/* Gauge */}
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm text-gray-500 font-medium">
+                            {count} applicant{count !== 1 ? "s" : ""} so far
+                          </span>
+                          <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full border ${badgeColors[level.color]}`}>
+                            <span className={`w-1.5 h-1.5 rounded-full ${dotColors[level.color]}`} />
+                            {level.label}
+                          </span>
+                        </div>
+                        <div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full bg-gradient-to-r ${barColors[level.color]} transition-all duration-700`}
+                            style={{ width: `${level.pct}%` }}
+                          />
+                        </div>
+                        <div className="flex justify-between mt-1.5 text-[10px] text-gray-400 font-semibold uppercase tracking-wide">
+                          <span>Low</span>
+                          <span>Moderate</span>
+                          <span>High</span>
+                        </div>
+                      </div>
+
+                      {/* Tip */}
+                      <div className={`sm:w-56 rounded-xl p-4 border ${badgeColors[level.color]} text-xs leading-relaxed`}>
+                        {level.color === "emerald" &&
+                          "Few applicants — a strong application now has a great chance of standing out."}
+                        {level.color === "amber" &&
+                          "Moderate interest — tailor your resume to the job description to get noticed."}
+                        {level.color === "red" &&
+                          "High competition — make your cover letter personal and highlight unique achievements."}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* Description */}
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
               <div className="h-1.5 bg-gradient-to-r from-amber-400 via-amber-300 to-transparent" />
