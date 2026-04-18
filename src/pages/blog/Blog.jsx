@@ -1,83 +1,109 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import BlogCard from "../../components/BlogCard";
 
-const questions = [
+const posts = [
   {
     id: 1,
-    question:
-      "What is an access token and refresh token? How do they work and where should we store them on the client-side?",
-    answer: (
-      <>
-        <p className="text-gray-700 leading-relaxed">
-          <span className="font-semibold text-[#331D2C]">Access Token:</span>{" "}
-          An access token is a credential which authorizes accessing specific
-          data for a specific user.
-        </p>
-        <p className="text-gray-700 leading-relaxed mt-3">
-          <span className="font-semibold text-[#331D2C]">Refresh Token:</span>{" "}
-          A refresh token is a credential which is used to obtain a new access
-          token when the old access token has expired.
-        </p>
-        <p className="text-gray-700 leading-relaxed mt-3">
-          <span className="font-semibold text-[#331D2C]">
-            How they work:
-          </span>{" "}
-          The application receives an access token after a user successfully
-          authenticates and authorizes access, then passes the access token as a
-          credential when it calls the target API. A refresh token enables a
-          client to retrieve new access tokens without requiring the user to
-          perform a complete login again.
-        </p>
-        <p className="text-gray-700 leading-relaxed mt-3">
-          <span className="font-semibold text-[#331D2C]">
-            Storage:
-          </span>{" "}
-          Access and refresh tokens can be stored in local storage or cookies.
-          The most secure option is to store them in{" "}
-          <span className="font-semibold">HttpOnly cookies</span> to protect
-          against XSS attacks.
-        </p>
-      </>
-    ),
+    category: "Tech",
+    title: "Understanding JWT — Access Tokens & Refresh Tokens",
+    excerpt:
+      "Learn how access tokens and refresh tokens work together to keep your users securely authenticated without forcing them to log in every few minutes.",
+    image:
+      "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=800&q=80",
+    author: "Murad Hossain",
+    date: "Apr 10, 2025",
+    readTime: "5 min read",
+    avatar: "M",
   },
   {
     id: 2,
-    question: "What is Express.js? What is Nest.js?",
-    answer: (
-      <>
-        <p className="text-gray-700 leading-relaxed">
-          <span className="font-semibold text-[#331D2C]">Express.js:</span>{" "}
-          Express.js is a minimal and flexible web application framework for
-          Node.js, a server-side JavaScript runtime. It provides a robust set of
-          features for building web and mobile applications and is commonly
-          referred to as Express.
-        </p>
-        <p className="text-gray-700 leading-relaxed mt-3">
-          <span className="font-semibold text-[#331D2C]">Nest.js:</span>{" "}
-          Nest.js is a framework for building scalable and maintainable
-          server-side applications using TypeScript and JavaScript. It uses
-          progressive JavaScript, is built with and fully supports TypeScript,
-          and combines elements of OOP, FP, and FRP.
-        </p>
-      </>
-    ),
+    category: "Tech",
+    title: "Express.js vs Nest.js — Which Should You Pick?",
+    excerpt:
+      "Both are powerful Node.js frameworks, but they serve different needs. Here's a practical breakdown to help you choose the right tool for your next project.",
+    image:
+      "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=800&q=80",
+    author: "Murad Hossain",
+    date: "Apr 3, 2025",
+    readTime: "6 min read",
+    avatar: "M",
   },
   {
     id: 3,
-    question: "Code Explanation",
-    answer: (
-      <p className="text-gray-700 leading-relaxed">
-        The website is about searching for jobs. Different pages were created
-        with different content, each having its own functionality. During
-        development, various components were built — each serving a distinct
-        purpose. HTML tags provide the website structure, Tailwind CSS handles
-        the styling, and React with JavaScript powers the interactivity and
-        dynamic functionality.
-      </p>
-    ),
+    category: "Tech",
+    title: "SQL vs NoSQL — Choosing the Right Database",
+    excerpt:
+      "Picking the wrong database can cost you months of refactoring later. Understand the trade-offs between relational and non-relational databases before you commit.",
+    image:
+      "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=80",
+    author: "Murad Hossain",
+    date: "Mar 28, 2025",
+    readTime: "7 min read",
+    avatar: "M",
+  },
+  {
+    id: 4,
+    category: "Tech",
+    title: "What is CORS and How Do You Fix It?",
+    excerpt:
+      "That dreaded 'blocked by CORS policy' error in the browser console — here's exactly what it means, why browsers enforce it, and how to resolve it on your server.",
+    image:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+    author: "Murad Hossain",
+    date: "Mar 20, 2025",
+    readTime: "4 min read",
+    avatar: "M",
+  },
+  {
+    id: 5,
+    category: "Career",
+    title: "How to Write a CV That Gets Past ATS Filters",
+    excerpt:
+      "Most CVs never reach a human recruiter. Applicant Tracking Systems filter them out first. Here's how to format and keyword-optimize your CV to pass the initial screen.",
+    image:
+      "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=800&q=80",
+    author: "Murad Hossain",
+    date: "Mar 14, 2025",
+    readTime: "8 min read",
+    avatar: "M",
+  },
+  {
+    id: 6,
+    category: "Career",
+    title: "7 Tips to Ace Your Next Technical Interview",
+    excerpt:
+      "Technical interviews test more than just coding ability — they assess how you think. These seven strategies will help you stay calm, structured, and impressive under pressure.",
+    image:
+      "https://images.unsplash.com/photo-1573497491765-dccce02b29df?auto=format&fit=crop&w=800&q=80",
+    author: "Murad Hossain",
+    date: "Mar 7, 2025",
+    readTime: "6 min read",
+    avatar: "M",
+  },
+  {
+    id: 7,
+    category: "Career",
+    title: "Remote vs On-Site — Picking the Right Work Style for You",
+    excerpt:
+      "The flexibility of remote work sounds ideal, but it's not for everyone. Weigh the real pros and cons of both setups before accepting your next offer.",
+    image:
+      "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?auto=format&fit=crop&w=800&q=80",
+    author: "Murad Hossain",
+    date: "Feb 28, 2025",
+    readTime: "5 min read",
+    avatar: "M",
   },
 ];
 
+const FILTERS = ["All", "Tech", "Career"];
+
 const Blog = () => {
+  const [active, setActive] = useState("All");
+
+  const filtered =
+    active === "All" ? posts : posts.filter((p) => p.category === active);
+
   return (
     <div className="bg-gray-50 min-h-screen">
       <Helmet>
@@ -108,46 +134,60 @@ const Blog = () => {
         />
         <div className="relative w-11/12 md:w-4/5 mx-auto py-14 lg:py-20 text-center">
           <span className="inline-block bg-amber-400 text-amber-900 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5">
-            Knowledge Base
+            iApplyNow Blog
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight">
-            Our <span className="text-amber-400">Blog</span>
+            Insights for Your{" "}
+            <span className="text-amber-400">Career Journey</span>
           </h1>
           <p className="text-gray-300 mt-4 text-base md:text-lg max-w-xl mx-auto">
-            Answers to common technical questions and project insights.
+            Tech deep-dives and career advice to help you land the job you
+            deserve.
           </p>
           <div className="w-16 h-1 bg-amber-400 mx-auto mt-6 rounded-full" />
         </div>
       </div>
 
-      {/* Q&A Cards */}
-      <div className="w-11/12 md:w-4/5 mx-auto py-14 md:py-20 space-y-8">
-        {questions.map(({ id, question, answer }) => (
-          <div
-            key={id}
-            className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
-          >
-            {/* Card header */}
-            <div className="flex items-start gap-4 px-7 py-5 border-b border-gray-100">
-              <span className="flex-shrink-0 w-9 h-9 rounded-xl bg-[#331D2C]/10 flex items-center justify-center text-[#331D2C] font-extrabold text-sm">
-                Q{id}
-              </span>
-              <h2 className="text-lg md:text-xl font-bold text-gray-900 leading-snug pt-1">
-                {question}
-              </h2>
-            </div>
-
-            {/* Card body */}
-            <div className="px-7 py-6">
-              <div className="flex items-start gap-4">
-                <span className="flex-shrink-0 w-9 h-9 rounded-xl bg-amber-400/20 flex items-center justify-center text-amber-700 font-extrabold text-sm">
-                  A
-                </span>
-                <div className="flex-1 pt-1">{answer}</div>
-              </div>
-            </div>
+      {/* Content */}
+      <div className="w-11/12 md:w-4/5 mx-auto py-14 md:py-20">
+        {/* Section heading + filter bar */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-10">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
+              Latest <span className="text-[#331D2C]">Articles</span>
+            </h2>
+            <div className="w-12 h-1 bg-amber-400 mt-2 rounded-full" />
           </div>
-        ))}
+
+          <div className="flex items-center gap-2 bg-white border border-gray-100 rounded-full px-2 py-1.5 shadow-sm self-start sm:self-auto">
+            {FILTERS.map((f) => (
+              <button
+                key={f}
+                onClick={() => setActive(f)}
+                className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-colors ${
+                  active === f
+                    ? "bg-[#331D2C] text-white"
+                    : "text-gray-500 hover:text-gray-800"
+                }`}
+              >
+                {f}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Card grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          {filtered.map((post) => (
+            <BlogCard key={post.id} post={post} />
+          ))}
+        </div>
+
+        {filtered.length === 0 && (
+          <div className="text-center py-20 text-gray-400">
+            No articles found in this category.
+          </div>
+        )}
       </div>
     </div>
   );
