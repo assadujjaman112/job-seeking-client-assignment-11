@@ -75,7 +75,7 @@ const AllJobs = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search job title…"
-              className="w-full pl-11 pr-10 py-3.5 rounded-xl text-gray-800 text-base shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
+              className="w-full pl-11 pr-10 py-3.5 rounded-xl bg-white text-gray-800 text-base shadow-lg border-0 focus:outline-none focus:ring-2 focus:ring-purple-300"
             />
             {query && (
               <button
