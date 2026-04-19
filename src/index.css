@@ -44,6 +44,14 @@
   border: none !important;
 }
 
+/* Make react-datepicker fill its container */
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+.react-datepicker__input-container {
+  width: 100% !important;
+}
+
 /* Partner logos marquee */
 @keyframes marquee {
   0%   { transform: translateX(0); }
