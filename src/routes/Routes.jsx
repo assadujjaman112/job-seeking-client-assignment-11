@@ -15,6 +15,11 @@ import AppliedJobs from "../pages/AppliedJobs";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/login/Login";
 
+const safeFetch = (url) =>
+  fetch(url)
+    .then((res) => (res.ok ? res.json() : []))
+    .catch(() => []);
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +41,7 @@ const router = createBrowserRouter([
       {
         path: "/allJobs",
         element: <AllJobs />,
-        loader: () => fetch(`${API_BASE_URL}/jobs`),
+        loader: () => safeFetch(`${API_BASE_URL}/jobs`),
       },
       {
         path: "/singleJob/:id",
@@ -46,7 +51,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${API_BASE_URL}/jobs/${params.id}`),
+          safeFetch(`${API_BASE_URL}/jobs/${params.id}`),
       },
       {
         path: "/addAJob",
@@ -63,7 +68,7 @@ const router = createBrowserRouter([
             <MyJobs />
           </PrivateRoute>
         ),
-        loader: () => fetch(`${API_BASE_URL}/jobs`),
+        loader: () => safeFetch(`${API_BASE_URL}/jobs`),
       },
       {
         path: "/updateJob/:id",
@@ -73,7 +78,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${API_BASE_URL}/jobs/${params.id}`),
+          safeFetch(`${API_BASE_URL}/jobs/${params.id}`),
       },
       {
         path: "/appliedJobs",
@@ -83,7 +88,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () =>
-          fetch(`${API_BASE_URL}/appliedJobs`),
+          safeFetch(`${API_BASE_URL}/appliedJobs`),
       },
       {
         path: "/signUp",
