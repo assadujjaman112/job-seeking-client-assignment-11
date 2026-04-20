@@ -1,87 +1,116 @@
 import { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import AppliedJobCart from "../components/AppliedJobCart";
 import { Helmet } from "react-helmet-async";
+import {
+  HiOutlineBriefcase,
+  HiOutlineClipboardList,
+} from "react-icons/hi";
+
+const FILTERS = ["All", "Remote", "On Site", "Hybrid", "Part Time"];
 
 const AppliedJobs = () => {
   const { user } = useContext(AuthContext);
   const jobs = useLoaderData();
-  const filteredJobs = jobs?.filter(
-    (job) => job.applicantEmail === user?.email
-  );
-  const [appliedJobs, setAppliedJobs] = useState(filteredJobs);
+  const filteredJobs = jobs?.filter((job) => job.applicantEmail === user?.email) ?? [];
+  const [activeFilter, setActiveFilter] = useState("All");
 
-  const handleFilteredJob = (filter) => {
-    if (filter === "All") {
-      setAppliedJobs(filteredJobs);
-    } else if (filter === "On Site") {
-      const onSiteJobs = filteredJobs.filter(
-        (job) => job.category === "On Site"
-      );
-      setAppliedJobs(onSiteJobs);
-    } else if (filter === "Remote") {
-      const remoteJobs = filteredJobs.filter(
-        (job) => job.category === "Remote"
-      );
-      setAppliedJobs(remoteJobs);
-    } else if (filter === "Hybrid") {
-      const hybridJobs = filteredJobs.filter(
-        (job) => job.category === "Hybrid"
-      );
-      setAppliedJobs(hybridJobs);
-    } else if (filter === "Part Time") {
-      const partTimeJobs = filteredJobs.filter(
-        (job) => job.category === "Part Time"
-      );
-      setAppliedJobs(partTimeJobs);
-    }
-  };
+  const displayed =
+    activeFilter === "All"
+      ? filteredJobs
+      : filteredJobs.filter((job) => job.category === activeFilter);
+
   return (
-    <div className="w-full bg-slate-100 py-5 md:py-10 lg:py-16 mb-5 md:mb-10 lg:mb-16">
-        <Helmet>
+    <div className="min-h-screen bg-gray-50">
+      <Helmet>
         <title>iApplyNow | Applied Jobs</title>
       </Helmet>
-      <h1 className="text-center text-3xl md:text-4xl lg:text-5xl font-bold">
-        Applied Jobs
-      </h1>
 
-      {appliedJobs?.length > 0 && (
-        <div className="w-4/5 mx-auto">
-          <div className="dropdown">
-            <label
-              tabIndex={0}
-              className="btn m-1 bg-[#331D2C] text-white hover:text-black"
-            >
-              Click To Filter Job
-            </label>
-            <ul
-              tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li onClick={() => handleFilteredJob("All")}>
-                <a>All Job</a>
-              </li>
-              <li onClick={() => handleFilteredJob("Remote")}>
-                <a>Remote Job</a>
-              </li>
-              <li onClick={() => handleFilteredJob("On Site")}>
-                <a>On site</a>
-              </li>
-              <li onClick={() => handleFilteredJob("Hybrid")}>
-                <a>Hybrid</a>
-              </li>
-              <li onClick={() => handleFilteredJob("Part Time")}>
-                <a>Part Time</a>
-              </li>
-            </ul>
+      {/* Page Header */}
+      <div
+        style={{ background: "linear-gradient(135deg, #331D2C 0%, #5a2d47 100%)" }}
+        className="py-12 px-4"
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-2 mb-1">
+            <HiOutlineClipboardList className="text-white/70 text-xl" />
+            <span className="text-white/70 text-sm font-medium uppercase tracking-widest">
+              Dashboard
+            </span>
           </div>
+          <h1 className="text-3xl md:text-4xl font-bold text-white">Applied Jobs</h1>
+          <p className="text-white/60 mt-1 text-sm">
+            {filteredJobs.length} {filteredJobs.length === 1 ? "application" : "applications"} submitted
+          </p>
         </div>
-      )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-4/5 mx-auto my-5 md:my-10 lg:my-16">
-        {appliedJobs.map((job) => (
-          <AppliedJobCart key={job._id} job={job}></AppliedJobCart>
-        ))}
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 py-10">
+
+        {/* No applications at all */}
+        {filteredJobs.length === 0 ? (
+          <div className="bg-white rounded-2xl shadow-sm py-24 flex flex-col items-center gap-4 text-center">
+            <div className="w-20 h-20 rounded-full bg-[#331D2C]/10 flex items-center justify-center">
+              <HiOutlineBriefcase className="text-[#331D2C] text-4xl" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-800">No applications yet</h3>
+            <p className="text-gray-400 text-sm max-w-xs">
+              You haven&apos;t applied to any jobs yet. Browse open positions and submit your first application.
+            </p>
+            <Link to="/allJobs">
+              <button className="mt-2 px-6 py-2.5 rounded-xl bg-[#331D2C] text-white text-sm font-semibold hover:bg-[#4a2940] transition-colors">
+                Browse Jobs
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <>
+            {/* Filter pills */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {FILTERS.map((f) => (
+                <button
+                  key={f}
+                  onClick={() => setActiveFilter(f)}
+                  className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200 ${
+                    activeFilter === f
+                      ? "bg-[#331D2C] text-white border-[#331D2C] shadow-md"
+                      : "bg-white text-gray-600 border-gray-200 hover:border-[#331D2C] hover:text-[#331D2C]"
+                  }`}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
+
+            {/* Filter returned nothing */}
+            {displayed.length === 0 ? (
+              <div className="bg-white rounded-2xl shadow-sm py-20 flex flex-col items-center gap-4 text-center">
+                <div className="w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center">
+                  <HiOutlineClipboardList className="text-amber-500 text-3xl" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-700">
+                  No {activeFilter} applications
+                </h3>
+                <p className="text-gray-400 text-sm max-w-xs">
+                  You haven&apos;t applied to any {activeFilter.toLowerCase()} jobs yet.
+                </p>
+                <button
+                  onClick={() => setActiveFilter("All")}
+                  className="mt-1 text-sm text-[#331D2C] font-semibold underline"
+                >
+                  Show all applications
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {displayed.map((job) => (
+                  <AppliedJobCart key={job._id} job={job} />
+                ))}
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
