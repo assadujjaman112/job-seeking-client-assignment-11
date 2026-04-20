@@ -1,6 +1,7 @@
 import { Outlet, ScrollRestoration, useNavigation } from "react-router-dom";
 import Footer from "../pages/shared/footer/Footer";
 import NavBar from "../pages/shared/navBar/NavBar";
+import PageLoader from "../components/PageLoader";
 
 const MainLayout = () => {
   const navigation = useNavigation();
@@ -8,7 +9,7 @@ const MainLayout = () => {
     <div>
       <ScrollRestoration />
       {navigation.state === "loading" ? (
-        "loading"
+        <PageLoader />
       ) : (
         <div>
           <NavBar></NavBar>
