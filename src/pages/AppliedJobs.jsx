@@ -3,9 +3,12 @@ import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import AppliedJobCart from "../components/AppliedJobCart";
 import { Helmet } from "react-helmet-async";
+import moment from "moment";
 import {
   HiOutlineBriefcase,
   HiOutlineClipboardList,
+  HiCheckCircle,
+  HiOutlineClock,
 } from "react-icons/hi";
 
 const FILTERS = ["All", "Remote", "On Site", "Hybrid", "Part Time"];
@@ -15,6 +18,11 @@ const AppliedJobs = () => {
   const jobs = useLoaderData();
   const filteredJobs = jobs?.filter((job) => job.applicantEmail === user?.email) ?? [];
   const [activeFilter, setActiveFilter] = useState("All");
+
+  const activeCount = filteredJobs.filter(
+    (job) => !moment(job.deadline).isBefore(moment(), "day")
+  ).length;
+  const expiredCount = filteredJobs.length - activeCount;
 
   const displayed =
     activeFilter === "All"
@@ -43,6 +51,24 @@ const AppliedJobs = () => {
           <p className="text-white/60 mt-1 text-sm">
             {filteredJobs.length} {filteredJobs.length === 1 ? "application" : "applications"} submitted
           </p>
+
+          {/* Summary stats */}
+          {filteredJobs.length > 0 && (
+            <div className="flex flex-wrap gap-3 mt-6">
+              <div className="flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2">
+                <HiOutlineBriefcase className="text-amber-300 text-base" />
+                <span className="text-white text-sm font-semibold">{filteredJobs.length} Total</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2">
+                <HiCheckCircle className="text-green-300 text-base" />
+                <span className="text-white text-sm font-semibold">{activeCount} Active</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/10 rounded-xl px-4 py-2">
+                <HiOutlineClock className="text-red-300 text-base" />
+                <span className="text-white text-sm font-semibold">{expiredCount} Expired</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
