@@ -14,10 +14,10 @@ import { Link, useLoaderData } from "react-router-dom";
 const CATEGORY_ALL = "All";
 
 const categoryColors = {
-  "On-Site": "bg-blue-100 text-blue-700",
-  Remote: "bg-green-100 text-green-700",
-  Hybrid: "bg-purple-100 text-purple-700",
-  "Part-Time": "bg-orange-100 text-orange-700",
+  "On Site": "bg-amber-100 text-amber-700",
+  Remote:    "bg-[#331D2C]/10 text-[#331D2C]",
+  Hybrid:    "bg-orange-100 text-orange-700",
+  "Part Time": "bg-rose-100 text-rose-700",
 };
 
 const isExpired = (deadline) => moment(deadline).isBefore(moment(), "day");
