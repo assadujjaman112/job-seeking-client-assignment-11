@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
 import { Helmet } from "react-helmet-async";
@@ -18,11 +18,13 @@ const PERKS = [
 ];
 
 const Login = () => {
-  const { signIn, googleSignIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, user } = useContext(AuthContext);
   const [loginErr, setLoginErr] = useState("");
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  if (user) return <Navigate to="/" replace />;
 
   const handleLogin = (e) => {
     e.preventDefault();
