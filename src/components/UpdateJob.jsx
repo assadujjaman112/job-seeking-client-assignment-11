@@ -6,236 +6,235 @@ import { AuthContext } from "../providers/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import {
+  HiOutlineBriefcase,
+  HiOutlineCalendar,
+  HiOutlineCurrencyDollar,
+  HiOutlineDocumentText,
+  HiOutlinePhotograph,
+  HiOutlineUserGroup,
+  HiOutlinePencilAlt,
+} from "react-icons/hi";
+
+const CATEGORIES = ["On Site", "Remote", "Hybrid", "Part Time"];
+
+const inputCls =
+  "w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white text-sm placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/60 transition-all";
+
+const Field = ({ label, required, children }) => (
+  <div className="flex flex-col gap-2">
+    <label className="text-xs font-semibold text-amber-400 uppercase tracking-wider">
+      {label}
+      {required && <span className="text-red-400 ml-1">*</span>}
+    </label>
+    {children}
+  </div>
+);
+
+const Divider = ({ icon: Icon, title }) => (
+  <div className="flex items-center gap-3 my-7">
+    <div className="h-px flex-1 bg-white/10" />
+    <div className="flex items-center gap-2 text-white/40 text-xs font-semibold uppercase tracking-widest">
+      <Icon className="text-amber-400 text-sm" />
+      {title}
+    </div>
+    <div className="h-px flex-1 bg-white/10" />
+  </div>
+);
 
 const UpdateJob = () => {
   const { user } = useContext(AuthContext);
-  const [startDate, setStartDate] = useState(new Date());
   const job = useLoaderData();
-  console.log("job", job)
-  const {
-    _id,
-    poster,
-    title,
-    date,
-    deadline,
-    salary,
-    category,
-    description,
-    photo,
-    logo
-  } = job;
+  const { _id, poster, title, date, deadline, salary, category, description, number, photo, logo } = job;
 
-  const handleUpdateJob = (event) => {
-    event.preventDefault();
+  const [deadlineDate, setDeadlineDate] = useState(deadline ? new Date(deadline) : new Date());
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const form = event.target;
+  const handleUpdateJob = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-    const poster = form.name.value;
-    const email = user.email;
-    const title = form.title.value;
-    const category = form.category.value;
-    const salary = form.salary.value;
-    const description = form.description.value;
-    const date = form.date.value;
-    const deadline = startDate;
-    const number = form.number.value;
-    const photo = form.photo.value;
-    const logo = form.logo.value;
-
+    const form = e.target;
     const updatedJob = {
-      title,
-      poster,
-      email,
-      category,
-      salary,
-      description,
-      date,
-      deadline,
-      number,
-      photo,
-      logo
+      poster:      form.name.value,
+      email:       user.email,
+      title:       form.title.value,
+      category:    form.category.value,
+      salary:      form.salary.value,
+      description: form.description.value,
+      date:        form.date.value,
+      deadline:    deadlineDate,
+      number:      form.number.value,
+      photo:       form.photo.value,
+      logo:        form.logo.value,
     };
-    console.log(updatedJob);
 
     fetch(`${API_BASE_URL}/jobs/${_id}`, {
       method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
+      headers: { "content-type": "application/json" },
       body: JSON.stringify(updatedJob),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         if (data.modifiedCount > 0) {
           Swal.fire({
-            title: "Good job!",
-            text: "Successfully updated a job!!!",
+            title: "Job Updated!",
+            text: "Your job listing has been updated.",
             icon: "success",
+            confirmButtonColor: "#331D2C",
           });
         }
-      });
+      })
+      .finally(() => setIsSubmitting(false));
   };
+
   return (
-    <div className="hero min-h-screen bg-base-200 mb-10 py-5 md:py-10 lg:py-16">
+    <div
+      className="min-h-screen"
+      style={{ background: "linear-gradient(160deg, #331D2C 0%, #4e2a42 40%, #1a0e18 100%)" }}
+    >
       <Helmet>
-        <title>iApplyNow | Update A Job</title>
+        <title>iApplyNow | Update Job</title>
       </Helmet>
-      <div className="card flex-shrink-0 w-11/12 lg:w-3/5  mx-auto my-10 md:my-16 lg:my-0 shadow-2xl bg-base-100">
-        <h1 className="text-center text-3xl font-bold mt-5">
-          Update A Job
-        </h1>
-        <form onSubmit={handleUpdateJob} className="card-body">
-          {/* Row - 1 */}
-          <div className="flex gap-5">
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text">Job Title</span>
-              </label>
-              <input
-                type="text"
-                name="title"
-                defaultValue={title}
-                placeholder="Job Title"
-                className="input input-bordered w-full text-xs"
-                required
-              />
+
+      {/* Decorative glows */}
+      <div className="fixed top-0 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"
+        style={{ background: "radial-gradient(circle, #f59e0b, transparent)", transform: "translate(30%, -30%)" }} />
+      <div className="fixed bottom-0 left-0 w-80 h-80 rounded-full opacity-10 pointer-events-none"
+        style={{ background: "radial-gradient(circle, #a78bfa, transparent)", transform: "translate(-30%, 30%)" }} />
+
+      <div className="relative max-w-2xl mx-auto px-4 py-14">
+
+        {/* Page header */}
+        <div className="text-center mb-10">
+          <span className="inline-block bg-amber-400 text-amber-900 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5">
+            Edit Listing
+          </span>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3 leading-tight">
+            Update Your{" "}
+            <span className="text-amber-400">Job Listing</span>
+          </h1>
+          <p className="text-white/50 text-sm">
+            Make changes below and save to update your listing.
+          </p>
+          <div className="w-16 h-1 bg-amber-400 mx-auto mt-5 rounded-full" />
+        </div>
+
+        {/* Form card */}
+        <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden shadow-2xl">
+
+          {/* Poster strip */}
+          <div className="flex items-center gap-3 px-6 py-4 border-b border-white/10 bg-white/5">
+            {user?.photoURL ? (
+              <img src={user.photoURL} alt={user.displayName}
+                className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-400/40" />
+            ) : (
+              <div className="w-9 h-9 rounded-full bg-amber-400 flex items-center justify-center text-amber-900 font-bold text-sm">
+                {user?.displayName?.charAt(0).toUpperCase()}
+              </div>
+            )}
+            <div>
+              <p className="text-sm font-semibold text-white leading-none">{user?.displayName}</p>
+              <p className="text-xs text-white/40 mt-0.5">{user?.email}</p>
             </div>
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text">User Name</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                defaultValue={poster}
-                placeholder="User Name"
-                className="input input-bordered w-full text-xs"
-                required
-              />
-            </div>
+            <span className="ml-auto text-xs font-semibold text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1 rounded-full flex items-center gap-1">
+              <HiOutlinePencilAlt className="text-sm" /> Editing
+            </span>
           </div>
-          {/* Row - 2 */}
-          <div className="flex gap-5">
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text">Category</span>
-              </label>
-              <input
-                type="text"
-                name="category"
-                defaultValue={category}
-                placeholder="Job Category"
-                className="input input-bordered w-full text-xs"
-                required
-              />
+
+          <form onSubmit={handleUpdateJob} className="p-6 md:p-8">
+
+            {/* ── Job Information ── */}
+            <Divider icon={HiOutlineBriefcase} title="Job Information" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Field label="Job Title" required>
+                <input type="text" name="title" defaultValue={title}
+                  placeholder="e.g. Senior Frontend Engineer"
+                  className={inputCls} required />
+              </Field>
+              <Field label="Poster Name" required>
+                <input type="text" name="name" defaultValue={poster}
+                  placeholder="Your name" className={inputCls} required />
+              </Field>
+              <Field label="Category" required>
+                <select name="category" className={`${inputCls} cursor-pointer`}
+                  defaultValue={category} required>
+                  {CATEGORIES.map((cat) => (
+                    <option key={cat} value={cat} className="bg-[#331D2C]">{cat}</option>
+                  ))}
+                </select>
+              </Field>
+              <Field label="Salary Range" required>
+                <div className="relative">
+                  <HiOutlineCurrencyDollar className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30 text-base pointer-events-none" />
+                  <input type="text" name="salary" defaultValue={salary}
+                    placeholder="e.g. $80k – $100k"
+                    className={`${inputCls} pl-9`} required />
+                </div>
+              </Field>
             </div>
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text">Salary Range</span>
-              </label>
-              <input
-                type="text"
-                name="salary"
-                defaultValue={salary}
-                placeholder="Salary Range"
-                className="input input-bordered w-full text-xs"
-                required
-              />
+
+            {/* ── Description ── */}
+            <Divider icon={HiOutlineDocumentText} title="Job Description" />
+            <div className="space-y-4">
+              <Field label="Description" required>
+                <textarea name="description" rows={5} defaultValue={description}
+                  placeholder="Describe the role, responsibilities, and requirements…"
+                  className={`${inputCls} resize-none`} required />
+              </Field>
+              <Field label="Number of Applicants">
+                <div className="relative">
+                  <HiOutlineUserGroup className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/30 text-base pointer-events-none" />
+                  <input type="number" name="number" defaultValue={number ?? 0} min={0}
+                    className={`${inputCls} pl-9`} />
+                </div>
+              </Field>
             </div>
-          </div>
-          {/* Row - 3 */}
-          <div className="flex gap-5">
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text">Job Description</span>
-              </label>
-              <input
-                type="text"
-                name="description"
-                defaultValue={description}
-                placeholder="Description"
-                className="input input-bordered w-full text-xs"
-                required
-              />
+
+            {/* ── Dates ── */}
+            <Divider icon={HiOutlineCalendar} title="Dates" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Field label="Job Posting Date" required>
+                <input type="date" name="date"
+                  defaultValue={date ? new Date(date).toISOString().split("T")[0] : ""}
+                  className={inputCls} required />
+              </Field>
+              <Field label="Application Deadline" required>
+                <DatePicker
+                  selected={deadlineDate}
+                  onChange={(d) => setDeadlineDate(d)}
+                  dateFormat="MMMM d, yyyy"
+                  className={inputCls}
+                  wrapperClassName="w-full"
+                />
+              </Field>
             </div>
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text">Job Posting Date</span>
-              </label>
-              <input
-                type="date"
-                name="date"
-                placeholder="Job Posting Date"
-                defaultValue={date}
-                className="input input-bordered w-full text-xs"
-                required
-              />
+
+            {/* ── Media ── */}
+            <Divider icon={HiOutlinePhotograph} title="Media" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Field label="Job Photo URL" required>
+                <input type="url" name="photo" defaultValue={photo}
+                  placeholder="https://example.com/image.jpg"
+                  className={inputCls} required />
+              </Field>
+              <Field label="Company Logo URL" required>
+                <input type="url" name="logo" defaultValue={logo}
+                  placeholder="https://example.com/logo.png"
+                  className={inputCls} required />
+              </Field>
             </div>
-          </div>
-          {/* Row - 4 */}
-          <div className="flex gap-5">
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text">Application Deadline</span>
-              </label>
-              <DatePicker
-                selected={startDate}
-                defaultValue={deadline}
-                onChange={(date) => setStartDate(date)}
-              />
-            </div>
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text">Job Applicants Number</span>
-              </label>
-              <input
-                type="text"
-                name="number"
-                defaultValue={0}
-                placeholder="Job Applicants Number"
-                className="input input-bordered w-full text-xs"
-                required
-              />
-            </div>
-          </div>
-          {/* Row - 5 */}
-          <div className="flex gap-5">
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text">Photo URL</span>
-              </label>
-              <input
-                type="text"
-                name="photo"
-                defaultValue={photo}
-                placeholder="Photo URL"
-                className="input input-bordered w-full text-xs"
-                required
-              />
-            </div>
-            <div className="w-1/2">
-              <label className="label">
-                <span className="label-text">Company logo</span>
-              </label>
-              <input
-                type="text"
-                name="logo"
-                defaultValue={logo}
-                placeholder="Company logo"
-                className="input input-bordered w-full text-xs"
-                required
-              />
-            </div>
-          </div>
-          <div className="w-full">
-            <input
-              className="btn bg-[#331D2C] text-white hover:text-black btn-block my-8"
+
+            {/* ── Submit ── */}
+            <button
               type="submit"
-              value="Update  A Job"
-            />
-          </div>
-        </form>
+              disabled={isSubmitting}
+              className="mt-8 w-full py-3.5 rounded-xl font-bold text-amber-900 text-sm bg-amber-400 hover:bg-amber-300 transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-amber-400/20"
+            >
+              {isSubmitting ? "Saving changes…" : "Save Changes"}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
