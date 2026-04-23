@@ -86,7 +86,6 @@ const categoryKeywords = {
 const Home = () => {
   const { allJobs, loading } = useAllJobs();
   const jobsSectionRef = useRef(null);
-  console.log("allJobs", allJobs);
 
   const [jobs, setJobs] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
