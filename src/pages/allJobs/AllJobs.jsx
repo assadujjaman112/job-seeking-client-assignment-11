@@ -6,6 +6,7 @@ import {
   HiOutlineCalendar,
   HiOutlineCurrencyDollar,
   HiOutlineSearch,
+  HiOutlineSwitchVertical,
   HiOutlineUserGroup,
   HiOutlineX,
 } from "react-icons/hi";
@@ -21,6 +22,13 @@ const categoryColors = {
 };
 
 const isExpired = (deadline) => moment(deadline).isBefore(moment(), "day");
+
+const SORT_OPTIONS = [
+  { value: "newest",     label: "Newest first" },
+  { value: "deadline",   label: "Deadline (soonest)" },
+  { value: "salary_asc", label: "Salary: Low → High" },
+  { value: "salary_desc",label: "Salary: High → Low" },
+];
 
 const SALARY_RANGES = [
   { label: "Any Salary", min: 0,      max: Infinity },
@@ -43,6 +51,7 @@ const AllJobs = () => {
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState(CATEGORY_ALL);
   const [activeSalary, setActiveSalary] = useState(SALARY_RANGES[0]);
+  const [sortBy, setSortBy] = useState("newest");
 
   const categories = useMemo(() => {
     const cats = [...new Set(allJobs?.map((j) => j.category).filter(Boolean))];
@@ -67,8 +76,21 @@ const AllJobs = () => {
             return min !== null && min >= activeSalary.min && min < activeSalary.max;
           })();
       return matchesQuery && matchesCategory && matchesSalary;
+    }).slice().sort((a, b) => {
+      if (sortBy === "newest") {
+        return new Date(b.date) - new Date(a.date);
+      }
+      if (sortBy === "deadline") {
+        return new Date(a.deadline) - new Date(b.deadline);
+      }
+      if (sortBy === "salary_asc" || sortBy === "salary_desc") {
+        const sa = parseSalaryMin(a.salary) ?? 0;
+        const sb = parseSalaryMin(b.salary) ?? 0;
+        return sortBy === "salary_asc" ? sa - sb : sb - sa;
+      }
+      return 0;
     });
-  }, [allJobs, query, activeCategory, activeSalary]);
+  }, [allJobs, query, activeCategory, activeSalary, sortBy]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -158,20 +180,34 @@ const AllJobs = () => {
         </div>
         </div>
 
-        {/* Result count */}
-        <p className="text-sm text-gray-500 mb-6">
-          Showing{" "}
-          <span className="font-semibold text-gray-800">
-            {displayJobs?.length ?? 0}
-          </span>{" "}
-          {displayJobs?.length === 1 ? "job" : "jobs"}
-          {activeCategory !== CATEGORY_ALL && (
-            <> in <span className="font-semibold text-[#331D2C]">{activeCategory}</span></>
-          )}
-          {query && (
-            <> matching &ldquo;<span className="font-semibold text-[#331D2C]">{query}</span>&rdquo;</>
-          )}
-        </p>
+        {/* Result count + sort */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <p className="text-sm text-gray-500">
+            Showing{" "}
+            <span className="font-semibold text-gray-800">
+              {displayJobs?.length ?? 0}
+            </span>{" "}
+            {displayJobs?.length === 1 ? "job" : "jobs"}
+            {activeCategory !== CATEGORY_ALL && (
+              <> in <span className="font-semibold text-[#331D2C]">{activeCategory}</span></>
+            )}
+            {query && (
+              <> matching &ldquo;<span className="font-semibold text-[#331D2C]">{query}</span>&rdquo;</>
+            )}
+          </p>
+          <div className="flex items-center gap-2">
+            <HiOutlineSwitchVertical className="text-gray-400 text-base flex-shrink-0" />
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="text-sm border border-gray-200 rounded-xl bg-white text-gray-700 font-semibold px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#331D2C]/30 cursor-pointer"
+            >
+              {SORT_OPTIONS.map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
 
         {/* ── Job cards grid ── */}
         {displayJobs?.length > 0 ? (
@@ -297,6 +333,7 @@ const AllJobs = () => {
                 setQuery("");
                 setActiveCategory(CATEGORY_ALL);
                 setActiveSalary(SALARY_RANGES[0]);
+                setSortBy("newest");
               }}
               className="px-6 py-2.5 rounded-xl bg-[#331D2C] text-white text-sm font-semibold hover:bg-[#4a2940] transition-colors"
             >
