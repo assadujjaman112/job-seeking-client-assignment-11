@@ -14,6 +14,7 @@ import UpdateJob from "../components/UpdateJob";
 import AppliedJobs from "../pages/AppliedJobs";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/login/Login";
+import Profile from "../pages/Profile";
 
 const safeFetch = (url) =>
   fetch(url)
@@ -89,6 +90,14 @@ const router = createBrowserRouter([
         ),
         loader: () =>
           safeFetch(`${API_BASE_URL}/appliedJobs`),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/signUp",

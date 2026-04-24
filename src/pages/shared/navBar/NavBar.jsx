@@ -68,19 +68,25 @@ const NavBar = () => {
           <div className="hidden lg:flex items-center gap-3">
             {user ? (
               <>
-                <div className="flex items-center gap-2.5">
-                  <img
-                    title={user.displayName}
-                    className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-400 ring-offset-1"
-                    src={user.photoURL}
-                    alt=""
-                  />
+                <Link to="/profile" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+                  {user.photoURL ? (
+                    <img
+                      title={user.displayName}
+                      className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-400 ring-offset-1"
+                      src={user.photoURL}
+                      alt=""
+                    />
+                  ) : (
+                    <div className="w-9 h-9 rounded-full bg-amber-400 ring-2 ring-amber-400 ring-offset-1 flex items-center justify-center text-amber-900 font-bold text-sm">
+                      {(user.displayName ?? user.email ?? "?").charAt(0).toUpperCase()}
+                    </div>
+                  )}
                   {user.displayName && (
                     <span className="text-sm font-medium text-gray-700 max-w-[120px] truncate">
                       {user.displayName}
                     </span>
                   )}
-                </div>
+                </Link>
                 <button
                   onClick={handleLogOut}
                   className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-gray-600 border border-gray-200 hover:border-[#331D2C] hover:text-[#331D2C] rounded-lg transition-colors"
@@ -134,16 +140,22 @@ const NavBar = () => {
             <div className="pt-3 border-t border-gray-100 mt-2 flex flex-col gap-2">
               {user ? (
                 <>
-                  <div className="flex items-center gap-3 px-4 py-2">
-                    <img
-                      className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-400"
-                      src={user.photoURL}
-                      alt=""
-                    />
+                  <Link to="/profile" onClick={() => setMenuOpen(false)} className="flex items-center gap-3 px-4 py-2 hover:opacity-80 transition-opacity">
+                    {user.photoURL ? (
+                      <img
+                        className="w-9 h-9 rounded-full object-cover ring-2 ring-amber-400"
+                        src={user.photoURL}
+                        alt=""
+                      />
+                    ) : (
+                      <div className="w-9 h-9 rounded-full bg-amber-400 flex items-center justify-center text-amber-900 font-bold text-sm">
+                        {(user.displayName ?? user.email ?? "?").charAt(0).toUpperCase()}
+                      </div>
+                    )}
                     <span className="text-sm font-medium text-gray-700">
                       {user.displayName}
                     </span>
-                  </div>
+                  </Link>
                   <button
                     onClick={handleLogOut}
                     className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-gray-600 border border-gray-200 rounded-lg hover:border-[#331D2C] hover:text-[#331D2C] transition-colors"
