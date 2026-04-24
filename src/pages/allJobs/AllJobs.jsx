@@ -33,10 +33,14 @@ const AllJobs = () => {
   }, [allJobs]);
 
   const displayJobs = useMemo(() => {
+    const q = query.toLowerCase();
     return allJobs?.filter((job) => {
-      const matchesQuery = job.title
-        .toLowerCase()
-        .includes(query.toLowerCase());
+      const matchesQuery =
+        !q ||
+        job.title?.toLowerCase().includes(q) ||
+        job.description?.toLowerCase().includes(q) ||
+        job.poster?.toLowerCase().includes(q) ||
+        job.salary?.toLowerCase().includes(q);
       const matchesCategory =
         activeCategory === CATEGORY_ALL || job.category === activeCategory;
       return matchesQuery && matchesCategory;
@@ -74,7 +78,7 @@ const AllJobs = () => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search job title…"
+              placeholder="Search by title, description, company…"
               className="w-full pl-11 pr-10 py-3.5 rounded-xl bg-white text-gray-800 text-base shadow-lg border-0 focus:outline-none focus:ring-2 focus:ring-purple-300"
             />
             {query && (
