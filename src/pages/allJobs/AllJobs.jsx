@@ -22,10 +22,27 @@ const categoryColors = {
 
 const isExpired = (deadline) => moment(deadline).isBefore(moment(), "day");
 
+const SALARY_RANGES = [
+  { label: "Any Salary", min: 0,      max: Infinity },
+  { label: "Under $50k", min: 0,      max: 50000 },
+  { label: "$50k–$80k",  min: 50000,  max: 80000 },
+  { label: "$80k–$120k", min: 80000,  max: 120000 },
+  { label: "$120k+",     min: 120000, max: Infinity },
+];
+
+const parseSalaryMin = (str) => {
+  if (!str) return null;
+  const match = str.replace(/,/g, "").match(/(\d+(?:\.\d+)?)(k)?/i);
+  if (!match) return null;
+  const val = parseFloat(match[1]) * (match[2] ? 1000 : 1);
+  return val < 1000 ? val * 1000 : val;
+};
+
 const AllJobs = () => {
   const allJobs = useLoaderData();
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState(CATEGORY_ALL);
+  const [activeSalary, setActiveSalary] = useState(SALARY_RANGES[0]);
 
   const categories = useMemo(() => {
     const cats = [...new Set(allJobs?.map((j) => j.category).filter(Boolean))];
@@ -43,9 +60,15 @@ const AllJobs = () => {
         job.salary?.toLowerCase().includes(q);
       const matchesCategory =
         activeCategory === CATEGORY_ALL || job.category === activeCategory;
-      return matchesQuery && matchesCategory;
+      const matchesSalary = activeSalary.min === 0 && activeSalary.max === Infinity
+        ? true
+        : (() => {
+            const min = parseSalaryMin(job.salary);
+            return min !== null && min >= activeSalary.min && min < activeSalary.max;
+          })();
+      return matchesQuery && matchesCategory && matchesSalary;
     });
-  }, [allJobs, query, activeCategory]);
+  }, [allJobs, query, activeCategory, activeSalary]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -97,7 +120,8 @@ const AllJobs = () => {
       <section className="max-w-7xl mx-auto px-4 py-10">
 
         {/* Category pills */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="space-y-4 mb-8">
+        <div className="flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -111,6 +135,27 @@ const AllJobs = () => {
               {cat}
             </button>
           ))}
+        </div>
+
+        {/* Salary pills */}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="flex items-center gap-1 text-xs font-semibold text-gray-400 uppercase tracking-wider mr-1">
+            <HiOutlineCurrencyDollar className="text-base" /> Salary
+          </span>
+          {SALARY_RANGES.map((range) => (
+            <button
+              key={range.label}
+              onClick={() => setActiveSalary(range)}
+              className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200 ${
+                activeSalary.label === range.label
+                  ? "bg-[#331D2C] text-white border-[#331D2C] shadow-md"
+                  : "bg-white text-gray-600 border-gray-200 hover:border-[#331D2C] hover:text-[#331D2C]"
+              }`}
+            >
+              {range.label}
+            </button>
+          ))}
+        </div>
         </div>
 
         {/* Result count */}
@@ -251,6 +296,7 @@ const AllJobs = () => {
               onClick={() => {
                 setQuery("");
                 setActiveCategory(CATEGORY_ALL);
+                setActiveSalary(SALARY_RANGES[0]);
               }}
               className="px-6 py-2.5 rounded-xl bg-[#331D2C] text-white text-sm font-semibold hover:bg-[#4a2940] transition-colors"
             >
